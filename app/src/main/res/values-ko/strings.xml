@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="plugin_description">AutoJs6 스크립트의 require 용 JavaScript 라이브러리와 Node 호환 심</string>
+    <string name="plugin_instruction">axios, cheerio, dayjs, i18n, pangu, lodash 및 Node 호환 심 buffer, events, fs, os, path, process, nodejs 를 AutoJs6 스크립트의 require 와 해당 전역 객체에 제공합니다. AutoJs6 는 이 플러그인의 파일을 직접 읽으므로 스크립트가 플러그인을 시작하지 않습니다. 각 라이브러리는 플러그인의 시작 페이지에서 끌 수 있으며, 실행 중인 스크립트가 아직 로드하지 않은 모듈의 다음 require 부터 적용됩니다.</string>
+    <string name="text_group_libraries">라이브러리</string>
+    <string name="text_group_node_shims">Node 호환 심</string>
+    <string name="text_library_license">라이선스: %1$s</string>
+    <string name="text_library_modules">모듈: %1$s</string>
+    <string name="text_library_version">버전 %1$s</string>
+    <string name="text_settings_summary">AutoJs6 스크립트의 require 용 라이브러리. 끈 라이브러리는 require 할 수 없으며, 실행 중인 스크립트가 이미 로드한 모듈은 스크립트가 끝날 때까지 유지됩니다.</string>
+</resources>

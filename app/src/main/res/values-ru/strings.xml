@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="plugin_description">Библиотеки JavaScript и прослойки совместимости с Node для require в скриптах AutoJs6</string>
+    <string name="plugin_instruction">Предоставляет axios, cheerio, dayjs, i18n, pangu и lodash, а также прослойки совместимости с Node buffer, events, fs, os, path, process и nodejs для require и соответствующих глобальных объектов скриптов AutoJs6. AutoJs6 читает файлы плагина напрямую, поэтому скрипты никогда не запускают плагин. Каждую библиотеку можно отключить на стартовой странице плагина; переключатель действует со следующего require модуля, который выполняющийся скрипт еще не загрузил.</string>
+    <string name="text_group_libraries">Библиотеки</string>
+    <string name="text_group_node_shims">Прослойки совместимости с Node</string>
+    <string name="text_library_license">Лицензия: %1$s</string>
+    <string name="text_library_modules">Модули: %1$s</string>
+    <string name="text_library_version">Версия %1$s</string>
+    <string name="text_settings_summary">Библиотеки для require в скриптах AutoJs6. Отключенную библиотеку нельзя загрузить через require; модули, уже загруженные выполняющимся скриптом, остаются до его завершения.</string>
+</resources>

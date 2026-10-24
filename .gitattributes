@@ -1,0 +1,5 @@
+* text=auto
+*.jar binary
+*.aar binary
+*.jks binary
+app/src/main/assets/modules/** -text

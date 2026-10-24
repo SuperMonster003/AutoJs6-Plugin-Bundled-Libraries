@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Placeholder icon (three stacked books); the Icon Studio icon follows before the first release. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path android:fillColor="#FF37474F" android:pathData="M24,0A24,24 0,1 1,23.99 0Z" />
+    <path android:fillColor="#FFFFC107" android:pathData="M13,12h6v24h-6z" />
+    <path android:fillColor="#FF4FC3F7" android:pathData="M21,10h6v26h-6z" />
+    <path android:fillColor="#FF81C784" android:pathData="M29.2,13.4l5.8,-1.6l6.2,22.4l-5.8,1.6z" />
+    <path android:fillColor="#FFECEFF1" android:pathData="M11,36h26v2h-26z" />
+</vector>
