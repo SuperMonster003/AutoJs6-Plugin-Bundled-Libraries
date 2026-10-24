@@ -14,7 +14,7 @@ Host side: AutoJs6 `docs/augment/ROADMAP.md` P4.3 (term T11, appendix C Q5 / Q6 
 ## Status / 状态
 
 - [x] P1 Repository, catalog `script-modules.json`, files copied from AutoJs6 `assets/modules`, build check of the catalog, info service, launch page with switches, debug APK (2026-10-24, host session augment-p4-3).
-- [ ] P2 Host integration verified on G8441 in the four states (not installed, enabled, disabled in the Plugin Center or per library, uninstalled), both states of the host module layer; see the host roadmap appendix A "P4.3".
+- [x] P2 Host integration verified on G8441 in the four states (not installed, enabled, disabled in the Plugin Center or per library, uninstalled), both states of the host module layer; see the host roadmap appendix A "P4.3" (2026-10-24: 5 states x 22 items, both layer states the same, local files first on the normal build; the debug build gained `DebugLibrarySwitchReceiver` for the per-library switches from adb).
 - [ ] P3 Before the first release:
   - [ ] Remote repository (`SuperMonster003/AutoJs6-Plugin-Bundled-Libraries`) and push authorization.
   - [ ] Icon Studio icon (the launcher icon is a placeholder vector), 10-language `.changelog` / `.readme` sources with the generator used by the other official plugins, CI workflow, `check_repository` contract.

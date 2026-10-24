@@ -48,3 +48,11 @@ The files are the ones AutoJs6 carried in `assets/modules` up to 6.8.0; AutoJs6 
 Signing reads the ignored `sign.properties`; without it the build uses the debug key, and AutoJs6 then asks to authorize the plugin in the Plugin Center.
 
 签名读取不入库的 `sign.properties`; 没有时使用 debug 密钥, AutoJs6 会要求在插件中心授权本插件.
+
+The debug build also has `DebugLibrarySwitchReceiver`, which switches libraries from adb for the device checks of AutoJs6 (Android 9 and later refuse `pm disable` of the aliases to the shell); only the adb shell (DUMP permission) can send it:
+
+debug 构建另有 `DebugLibrarySwitchReceiver`, 供 AutoJs6 的真机检查从 adb 切换库开关 (Android 9 起 shell 不能 `pm disable` 这些 alias); 只有 adb shell (DUMP 权限) 能发送:
+
+```bash
+adb shell am broadcast -n io.github.supermonster003.autojs6.plugin.bundled.libraries/io.github.supermonster003.autojs6.plugin.bundled.libraries.DebugLibrarySwitchReceiver --es library axios,buffer --ez enabled false
+```
