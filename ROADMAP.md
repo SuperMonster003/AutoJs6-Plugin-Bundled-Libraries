@@ -23,7 +23,7 @@ Host side: AutoJs6 `docs/augment/ROADMAP.md` P4.3 (term T11, appendix C Q5 / Q6 
   - [x] CI (`.github/workflows/build.yml`, `markdown.yml`, `icon-studio.yml`), `.python/check_repository.py` (the alias / catalog / info service contract, the minimum host build in the build script and the documents, the index routing values, ASCII punctuation), `prepush_check.py`.
   - [x] Routing values for the official index: `plugin_id` `bundled-libraries`, `plugin_engine` `script-modules`, `plugin_variant` `default`, `plugin_requires_host_version` (the index generator resolves them to `5935`).
   - [x] `assembleDebug`, `assembleRelease`, unit tests and lint pass locally; the release build tasks `verifySignedReleaseArtifacts` / `appendDigestToReleasedFiles` check the signed APK (one universal APK, no native code, every module file stored uncompressed).
-  - [ ] Install smoke test on G8441 with the debug APK (host `tools/augment/device_plugin_modules_check.py`).
+  - [x] Install smoke test on G8441 with the debug APK of `bd8b6ef` and a host debug 5935 without the module files (host `tools/augment/device_plugin_modules_check.py`, 2026-10-24): not installed, enabled, disabled in the Plugin Center, axios / buffer switched off, uninstalled, 22 items each, the same in both states of the host module layer, PASS.
   - [ ] `requiresHostVersion` set to the published AutoJs6 6.8.0 build (see "Release steps").
   - [ ] Signed release, official index entry (engine `script-modules`), documentation site entry.
 
