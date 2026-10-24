@@ -1,6 +1,7 @@
 package io.github.supermonster003.autojs6.plugin.bundled.libraries
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
@@ -12,9 +13,9 @@ import android.widget.Switch
 import android.widget.TextView
 
 /**
- * The launch page: the libraries in two sections (libraries and Node compatibility shims), one switch each. A switch
- * takes effect for the next `require` of a module that the running script has not loaded yet.
- * zh-CN: 启动页: 库分两节 (库与 Node 兼容垫片), 每个一个开关. 开关对运行中的脚本尚未加载的模块, 在下一次 `require` 时生效.
+ * The launch page: the libraries in two sections (libraries and Node compatibility shims), one switch each, and the
+ * release history. A switch takes effect for the next `require` of a module that the running script has not loaded yet.
+ * zh-CN: 启动页: 库分两节 (库与 Node 兼容垫片), 每个一个开关, 以及发行历史. 开关对运行中的脚本尚未加载的模块, 在下一次 `require` 时生效.
  */
 class SettingsActivity : Activity() {
 
@@ -33,6 +34,11 @@ class SettingsActivity : Activity() {
             content.addView(text(getString(title), 16f).apply { setPadding(0, dp(20), 0, dp(4)) })
             libraries.filter { it.group == group }.forEach { content.addView(row(it)) }
         }
+        content.addView(text(getString(R.string.text_release_history), 16f).apply {
+            setPadding(0, dp(20), 0, dp(12))
+            setBackgroundResource(TypedValue().also { theme.resolveAttribute(android.R.attr.selectableItemBackground, it, true) }.resourceId)
+            setOnClickListener { startActivity(Intent(this@SettingsActivity, ReleaseHistoryActivity::class.java)) }
+        }, MATCH_PARENT, WRAP_CONTENT)
         val scroll = ScrollView(this).apply { addView(content, MATCH_PARENT, WRAP_CONTENT) }
         scroll.setOnApplyWindowInsetsListener { view, insets ->
             @Suppress("DEPRECATION")

@@ -3,6 +3,8 @@ import org.gradle.api.GradleException
 import org.gradle.api.provider.Property
 import java.io.File
 import java.util.Properties
+import java.util.zip.ZipEntry
+import java.util.zip.ZipFile
 
 plugins {
     id("io.github.supermonster003.autojs6-native-alignment")
@@ -16,8 +18,10 @@ plugins {
 val globalApplicationId = "io.github.supermonster003.autojs6.plugin.bundled.libraries"
 
 // The AutoJs6 build with plugin script modules (roadmap T11 / P4.3 of the host). The host commits of P4.3 keep the
-// build number 5935 of their parent; set the build of the published host before the first release.
-// zh-CN: 支持插件脚本模块的 AutoJs6 构建 (宿主 ROADMAP T11 / P4.3). 宿主 P4.3 的提交沿用父提交的构建号 5935; 首次发布前改为已发布宿主的构建号.
+// build number 5935 of their parent; when AutoJs6 6.8.0 is final, set its build number here and in .readme/common.json
+// before the first release (ROADMAP.md "Release steps"; .python/check_repository.py keeps the two equal).
+// zh-CN: 支持插件脚本模块的 AutoJs6 构建 (宿主 ROADMAP T11 / P4.3). 宿主 P4.3 的提交沿用父提交的构建号 5935; AutoJs6 6.8.0
+// 定版时, 首次发布前把这里与 .readme/common.json 改为其构建号 (ROADMAP.md "发布步骤"; .python/check_repository.py 保证两处一致).
 val requiredHostVersionCode = 5935L
 
 val catalogFile = file("src/main/assets/script-modules.json")
@@ -95,6 +99,13 @@ android {
         buildConfigField("long", "REQUIRED_HOST_VERSION_CODE", "${requiredHostVersionCode}L")
 
         manifestPlaceholders["requiredHostVersion"] = requiredHostVersionCode
+
+        // Routing metadata read by the official plugin index generator.
+        // zh-CN: 官方插件索引生成器读取的路由元数据.
+        resValue("string", "plugin_id", "bundled-libraries")
+        resValue("string", "plugin_engine", "script-modules")
+        resValue("string", "plugin_variant", "default")
+        resValue("string", "plugin_requires_host_version", "$requiredHostVersionCode")
     }
 
     signingConfigs {
@@ -135,7 +146,10 @@ android {
         }
     }
 
-    buildFeatures { buildConfig = true }
+    buildFeatures {
+        buildConfig = true
+        resValues = true
+    }
 
     // The module files are read by AutoJs6 as they are; compressing them only costs the host a decompression.
     // zh-CN: 模块文件由 AutoJs6 原样读取; 压缩只会让宿主多一次解压.
@@ -160,12 +174,71 @@ androidComponents {
 
 dependencies {
     implementation(files("$rootDir/libs/common-plugin-api.aar"))
+    testImplementation(libs.junit)
 }
 
 tasks {
     withType(JavaCompile::class.java) { options.encoding = "UTF-8" }
     named("preBuild") { dependsOn(verifyScriptModuleCatalog) }
+
+    // Collects the signed release APK into releases/ with its CRC32 appended (the official plugin convention).
+    // zh-CN: 把签名的 release APK 收集到 releases/ 并在文件名后追加 CRC32 (官方插件惯例).
+    register<Copy>("appendDigestToReleasedFiles") {
+        group = "distribution"
+        description = "Appends CRC32 digest to released APK files"
+        dependsOn("assembleRelease")
+        from(layout.buildDirectory.dir("outputs/apk/release")) {
+            include("*.${utils.FILE_EXTENSION_APK}")
+            eachFile { name = "${name.removeSuffix(".${utils.FILE_EXTENSION_APK}")}-${utils.digestCRC32(file)}.${utils.FILE_EXTENSION_APK}" }
+        }
+        into(rootProject.layout.projectDirectory.dir("releases"))
+        includeEmptyDirs = false
+        duplicatesStrategy = DuplicatesStrategy.FAIL
+        doLast { println("Destination: ${rootProject.layout.projectDirectory.dir("releases").asFile}") }
+    }
 }
+
+// Fail before collection when the signing identity or the APK is not what AutoJs6 expects: complete credentials, one
+// universal APK that apksigner accepts, no native library, and the catalog with every module file stored uncompressed
+// (AutoJs6 reads them from the APK as they are).
+// zh-CN: 签名身份或 APK 不符合 AutoJs6 的预期时, 在收集之前失败: 凭据完整, 只有一个通过 apksigner 校验的通用 APK, 不含原生库,
+// 清单与每个模块文件都以不压缩方式存储 (AutoJs6 直接从 APK 原样读取).
+val verifySignedReleaseArtifacts = tasks.register("verifySignedReleaseArtifacts") {
+    group = "verification"
+    dependsOn("assembleRelease")
+    doLast {
+        val signing = android.buildTypes.getByName("release").signingConfig
+        check(
+            signing != null && signing.storeFile?.isFile == true &&
+                !signing.storePassword.isNullOrBlank() && !signing.keyAlias.isNullOrBlank() &&
+                !signing.keyPassword.isNullOrBlank(),
+        ) { "Release signing configuration is missing or incomplete" }
+        val directory = layout.buildDirectory.dir("outputs/apk/release").get().asFile
+        val apks = directory.listFiles { file -> file.isFile && file.extension == utils.FILE_EXTENSION_APK }.orEmpty()
+        check(apks.map { it.name }.toSet() == setOf("${rootProject.name}-v${versions.appVersionName}-universal.apk")) {
+            "Unexpected release APK set: ${apks.map { it.name }.sorted()}"
+        }
+        val signerJar = androidComponents.sdkComponents.sdkDirectory.get().asFile
+            .resolve("build-tools/${android.buildToolsVersion}/lib/apksigner.jar")
+        check(signerJar.isFile) { "Android SDK apksigner is unavailable" }
+        val result = providers.exec {
+            commandLine("java", "-jar", signerJar.absolutePath, "verify", apks.single().absolutePath)
+            isIgnoreExitValue = true
+        }.result.get()
+        check(result.exitValue == 0) { "Release APK signature verification failed" }
+        val moduleFiles = moduleRootDirectory.walkTopDown().filter(File::isFile)
+            .map { "assets/modules/" + it.relativeTo(moduleRootDirectory).invariantSeparatorsPath }.toSet()
+        ZipFile(apks.single()).use { zip ->
+            val entries = zip.entries().asSequence().associateBy(ZipEntry::getName)
+            check(entries.keys.none { it.startsWith("lib/") }) { "The release APK must not contain native libraries" }
+            (moduleFiles + "assets/script-modules.json").forEach { path ->
+                val entry = entries[path] ?: throw GradleException("The release APK misses $path")
+                check(entry.method == ZipEntry.STORED) { "$path must be stored uncompressed" }
+            }
+        }
+    }
+}
+tasks.named("appendDigestToReleasedFiles") { dependsOn(verifySignedReleaseArtifacts) }
 
 // The plugin ships JavaScript files only.
 // zh-CN: 插件只包含 JavaScript 文件.

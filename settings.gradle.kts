@@ -3,7 +3,6 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "autojs6-plugin-bundled-libraries"
 
 pluginManagement {
-    providers.gradleProperty("autojs.buildPlugins.includeBuild").orNull?.let { includeBuild(it) }
     repositories {
         gradlePluginPortal()
         mavenCentral()

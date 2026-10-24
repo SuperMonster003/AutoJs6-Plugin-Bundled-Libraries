@@ -31,7 +31,7 @@ internal fun Context.pluginInfo(): PluginInfo {
     return PluginInfo().apply {
         name = getString(R.string.app_name)
         description = getString(R.string.plugin_description)
-        instruction = getString(R.string.plugin_instruction)
+        instruction = BundledLibrariesContract.INSTRUCTION_REFERENCE
         author = "SuperMonster003"
         versionName = packageInfo.versionName.orEmpty()
         versionCode = packageInfo.versionCodeCompat()

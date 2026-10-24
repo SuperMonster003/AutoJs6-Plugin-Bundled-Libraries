@@ -1,0 +1,24 @@
+{
+  "changelog_label_hint": "Подсказка",
+  "changelog_label_feature": "Функция",
+  "changelog_label_fix": "Исправление",
+  "changelog_label_improvement": "Улучшение",
+  "changelog_label_dependency": "Зависимость",
+  "$data": {
+    "v1.0.0": {
+      "released_date": "2026/10/24",
+      "hint": [
+        "Требуется AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) или новее",
+        "Начиная с AutoJs6 {{ required_host_version_name }}, перечисленные ниже библиотеки больше не входят в AutoJs6: с установленным плагином require и глобальные объекты работают как раньше, и существующие скрипты менять не нужно; без плагина или при отключённом плагине require этих библиотек выдаёт ошибку с пояснением, как его установить или включить"
+      ],
+      "feature": [
+        "axios, cheerio, dayjs, i18n (вместе с banana-i18n), pangu и lodash для require; axios, cheerio, dayjs, i18n и pangu доступны и как глобальные объекты",
+        "Прослойки совместимости с Node buffer, events, fs, os, path, process и nodejs для require",
+        "Страница плагина с переключателем для каждой библиотеки (по умолчанию все включены) и историей выпусков; отключённая библиотека недоступна для последующих require"
+      ],
+      "dependency": [
+        "Добавлен AutoJs6 Common Plugin API"
+      ]
+    }
+  }
+}

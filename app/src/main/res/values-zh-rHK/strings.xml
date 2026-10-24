@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="plugin_description">供 AutoJs6 腳本 require 使用的 JavaScript 庫與 Node 相容墊片</string>
-    <string name="plugin_instruction">提供 axios, cheerio, dayjs, i18n, pangu 與 lodash, 以及 Node 相容墊片 buffer, events, fs, os, path, process 與 nodejs, 供 AutoJs6 腳本的 require 及對應的全域物件使用. AutoJs6 直接從本插件讀取檔案, 腳本不會啟動插件. 每個庫都可以在插件的啟動頁中關閉; 開關對執行中的腳本尚未載入的模組, 在下一次 require 時生效.</string>
     <string name="text_group_libraries">庫</string>
     <string name="text_group_node_shims">Node 相容墊片</string>
     <string name="text_library_license">授權: %1$s</string>
     <string name="text_library_modules">模組: %1$s</string>
     <string name="text_library_version">版本 %1$s</string>
+    <string name="text_release_history">發佈記錄</string>
+    <string name="text_release_history_load_failed">無法載入發佈記錄</string>
     <string name="text_settings_summary">供 AutoJs6 腳本 require 使用的庫. 關閉的庫不能被 require; 執行中的腳本已載入的模組保留到腳本結束.</string>
 </resources>

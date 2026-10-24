@@ -1,0 +1,82 @@
+{
+  "$name": "Français",
+  "text_current_lowercase": "actuel",
+  "text_plugin_synopsis": "Bibliothèques JavaScript et couches de compatibilité Node pour require dans les scripts AutoJs6",
+  "h3_languages_with_ascii": "Langues (Languages)",
+  "p_languages_all_supported_for_readme": "Le README.md actuel prend en charge les langues suivantes",
+  "h3_introduction": "Introduction",
+  "p_introduction_what": "Bundled Libraries regroupe les {{ library_count }} bibliothèques de script autrefois intégrées à AutoJs6: axios, cheerio, dayjs, i18n, pangu et lodash, ainsi que les couches de compatibilité Node buffer, events, fs, os, path, process et nodejs. À partir d'AutoJs6 {{ required_host_version_name }}, le paquet d'AutoJs6 ne les contient plus; une fois ce plugin installé et activé, `require('axios')`, `require('fs')` et les autres, ainsi que les objets globaux `axios`, `cheerio`, `dayjs`, `i18n` et `pangu`, fonctionnent exactement comme avant.",
+  "p_introduction_how": "Le plugin n'est qu'un paquet de ressources: AutoJs6 lit les fichiers des bibliothèques directement dans le paquet du plugin, les scripts ne démarrent jamais le processus du plugin et le plugin n'a besoin d'aucune autorisation de stockage, de réseau ou autre (les requêtes réseau d'axios sont envoyées par AutoJs6, qui exécute le script). Les bibliothèques inutiles peuvent être désactivées une par une sur la page du plugin.",
+  "h3_libraries": "Bibliothèques incluses",
+  "p_libraries_intro": "Les noms de module sont les arguments de `require`; une bibliothèque qui a un objet global peut aussi s'utiliser sans `require`. L'origine et la licence de chaque bibliothèque figurent dans [THIRD_PARTY_NOTICES.md]({{ notices_url }}).",
+  "text_group_libraries": "Bibliothèques",
+  "text_group_node_shims": "Couches de compatibilité Node",
+  "th_library": "Bibliothèque",
+  "th_modules": "Modules",
+  "th_global": "Objet global",
+  "th_version": "Version",
+  "th_license": "Licence",
+  "h3_usage": "Utilisation",
+  "usage_steps": [
+    "Utilisez AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) ou ultérieur.",
+    "Installez Bundled Libraries depuis le Centre des plugins d'AutoJs6 (ou téléchargez l'APK depuis [Releases]({{ repo_url }}/releases)) et vérifiez que le plugin est activé.",
+    "Utilisez `require` pour les bibliothèques nécessaires comme d'habitude, ou directement les objets globaux, par exemple:"
+  ],
+  "p_usage_note": "Il n'existe qu'un seul paquet universel, sans bibliothèque native, pour les appareils sous Android {{ min_android_version }} (API {{ android_min_sdk }}) ou ultérieur.",
+  "h3_switches": "Activation par bibliothèque",
+  "p_switches_intro": "La page du plugin (ouverte depuis le Centre des plugins d'AutoJs6 ou l'icône Bundled Libraries de l'écran d'accueil) propose un interrupteur par bibliothèque, tous activés par défaut",
+  "switch_points": [
+    "Une bibliothèque désactivée ne peut plus être chargée par `require` et son objet global n'est plus utilisable; réactivez-la pour la retrouver.",
+    "Un interrupteur s'applique au `require` suivant: les modules déjà chargés par un script en cours restent disponibles jusqu'à la fin du script.",
+    "`fs` a besoin de `buffer`, et `nodejs` de `process` et de `buffer`: si `buffer` ou `process` est désactivé, les modules qui en dépendent ne peuvent pas se charger non plus.",
+    "\"Historique des versions\", en bas de la page, liste les changements de chaque version."
+  ],
+  "h3_unavailable": "Quand le plugin est indisponible",
+  "p_unavailable_intro": "Quand le plugin n'est pas installé, n'est pas autorisé, est désactivé dans le Centre des plugins ou n'est pas compatible, ou qu'une bibliothèque est désactivée, `require` de cette bibliothèque et la lecture de son objet global lèvent une erreur",
+  "unavailable_points": [
+    "L'erreur est une `Error` dont le `code` vaut `MODULE_NOT_FOUND`; son message indique s'il faut installer le plugin ou où l'activer, et les scripts peuvent la traiter avec `try...catch`.",
+    "L'objet d'erreur porte aussi `library` (le nom de la bibliothèque) et `reason` (`not-installed`, `unauthorized`, `plugin-disabled`, `library-disabled` ou `incompatible`).",
+    "Un changement d'état du plugin n'interrompt jamais un script en cours, il ne concerne que les `require` suivants; les autres modules intégrés d'AutoJs6 et les fichiers propres au script ne sont pas concernés."
+  ],
+  "h3_compatibility": "Compatibilité",
+  "compatibility_points": [
+    "Nécessite AutoJs6 {{ required_host_version_name }} (build {{ required_host_version_code }}) ou ultérieur; les versions antérieures d'AutoJs6 intègrent ces bibliothèques et n'ont pas besoin du plugin.",
+    "Prend en charge Android {{ min_android_version }} (API {{ android_min_sdk }}) ou ultérieur, avec un seul paquet pour toutes les architectures de processeur.",
+    "Les fichiers des bibliothèques sont identiques à ceux autrefois intégrés à AutoJs6: les scripts existants n'ont rien à changer.",
+    "Le plugin sert les scripts JavaScript par défaut d'AutoJs6; les scripts du plugin d'exécution Node.js utilisent les modules de Node.js lui-même."
+  ],
+  "h3_faq": "FAQ",
+  "faq": [
+    {
+      "q": "Pourquoi AutoJs6 n'intègre-t-il plus ces bibliothèques?",
+      "a": "Seule une partie des scripts les utilise. Sous forme de plugin, elles allègent le paquet d'AutoJs6, seuls ceux qui en ont besoin installent le plugin, et seules les bibliothèques utilisées restent activées. Les fichiers du plugin sont les mêmes que ceux qui étaient intégrés."
+    },
+    {
+      "q": "Mon script utilise directement l'objet global `axios`. Dois-je passer à `require`?",
+      "a": "Non. Les objets globaux `axios`, `cheerio`, `dayjs`, `i18n` et `pangu` sont les mêmes modules que ceux renvoyés par `require`, et tous sont chargés depuis ce plugin."
+    },
+    {
+      "q": "Le plugin se connecte-t-il à Internet ou tourne-t-il en arrière-plan?",
+      "a": "Non. Le plugin n'a pas d'autorisation réseau et l'exécution d'un script ne démarre jamais son processus. Les requêtes réseau d'axios sont envoyées par AutoJs6, qui exécute le script."
+    },
+    {
+      "q": "L'erreur indique que le plugin doit être autorisé. Que faire?",
+      "a": "La version publiée, installée depuis le Centre des plugins d'AutoJs6 ou depuis les Releases de ce projet, n'a besoin d'aucune autorisation. Une version compilée soi-même a une autre signature et doit d'abord être autorisée dans le Centre des plugins, comme indiqué."
+    }
+  ],
+  "h3_plugin_interface": "Interface Du Plugin",
+  "p_plugin_interface": "Les informations suivantes s'adressent aux développeurs de l'hôte AutoJs6 et de plugins; l'hôte utilise ces identifiants pour découvrir le plugin et lire les fichiers des bibliothèques",
+  "h3_roadmap": "Feuille De Route",
+  "p_roadmap": "La liste de contrôle avant publication et les étapes de publication sont suivies dans ROADMAP.md; les décisions correspondantes figurent dans `docs/augment/ROADMAP.md` du dépôt AutoJs6.",
+  "text_link_roadmap": "Voir ROADMAP.md",
+  "h3_release_history": "Historique Des Versions",
+  "h5_for_more_release_history": "Pour plus d'historique des versions",
+  "h3_build": "Compilation",
+  "p_build_intro": "Cette section s'adresse aux développeurs souhaitant compiler le plugin depuis les sources.",
+  "h3_license": "Licence",
+  "p_license": "Le code du plugin et les modules écrits pour AutoJs6 (les couches de compatibilité Node, l'enveloppe i18n et l'adaptateur axios) sont distribués sous la [Mozilla Public License 2.0]({{ license_url }}). Les bibliothèques tierces incluses conservent leurs propres licences (MIT et autres), voir [THIRD_PARTY_NOTICES.md]({{ notices_url }}).",
+  "h3_links": "Liens",
+  "text_link_autojs6": "Projet AutoJs6",
+  "text_link_notices": "Mentions des tiers",
+  "p_instruction_more": "Le code source, l'historique des versions et les licences tierces se trouvent sur la [page du projet]({{ repo_url }})."
+}

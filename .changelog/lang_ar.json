@@ -1,0 +1,24 @@
+{
+  "changelog_label_hint": "تلميح",
+  "changelog_label_feature": "ميزة",
+  "changelog_label_fix": "إصلاح",
+  "changelog_label_improvement": "تحسين",
+  "changelog_label_dependency": "تبعية",
+  "$data": {
+    "v1.0.0": {
+      "released_date": "2026/10/24",
+      "hint": [
+        "يتطلب AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) أو أحدث",
+        "بدءا من AutoJs6 {{ required_host_version_name }} لم تعد المكتبات التالية تأتي مع AutoJs6: بعد تثبيت هذا المكون يعمل require والكائنات العامة كما كانت ولا تحتاج السكربتات الحالية إلى تعديل; ومن دون المكون أو عند تعطيله يعطي require لهذه المكتبات خطأ يوضح كيفية تثبيته أو تفعيله"
+      ],
+      "feature": [
+        "axios و cheerio و dayjs و i18n (مع banana-i18n) و pangu و lodash عبر require, وتتوفر axios و cheerio و dayjs و i18n و pangu أيضا ككائنات عامة",
+        "طبقات توافق Node وهي buffer و events و fs و os و path و process و nodejs عبر require",
+        "صفحة المكون بمفتاح لكل مكتبة (كلها مفعلة افتراضيا) وسجل الإصدارات; المكتبة الموقوفة غير متاحة لاستدعاءات require اللاحقة"
+      ],
+      "dependency": [
+        "إرفاق AutoJs6 Common Plugin API"
+      ]
+    }
+  }
+}

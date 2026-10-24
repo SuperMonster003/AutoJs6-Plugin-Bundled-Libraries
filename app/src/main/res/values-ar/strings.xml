@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="plugin_description">مكتبات JavaScript وطبقات توافق Node لاستخدامها مع require في سكربتات AutoJs6</string>
-    <string name="plugin_instruction">يوفر axios و cheerio و dayjs و i18n و pangu و lodash, وطبقات توافق Node وهي buffer و events و fs و os و path و process و nodejs, لاستخدامها مع require والكائنات العامة المقابلة في سكربتات AutoJs6. يقرأ AutoJs6 ملفات هذه الإضافة مباشرة, لذلك لا تشغل السكربتات الإضافة أبدا. يمكن إيقاف كل مكتبة من صفحة تشغيل الإضافة, ويسري المفتاح عند استدعاء require التالي لوحدة لم يحملها السكربت الجاري بعد.</string>
     <string name="text_group_libraries">المكتبات</string>
     <string name="text_group_node_shims">طبقات توافق Node</string>
     <string name="text_library_license">الترخيص: %1$s</string>
     <string name="text_library_modules">الوحدات: %1$s</string>
     <string name="text_library_version">الإصدار %1$s</string>
+    <string name="text_release_history">سجل الإصدارات</string>
+    <string name="text_release_history_load_failed">تعذر تحميل سجل الإصدارات</string>
     <string name="text_settings_summary">مكتبات لاستخدامها مع require في سكربتات AutoJs6. لا يمكن تحميل مكتبة موقوفة عبر require, وتبقى الوحدات التي حملها سكربت جار حتى ينتهي السكربت.</string>
 </resources>

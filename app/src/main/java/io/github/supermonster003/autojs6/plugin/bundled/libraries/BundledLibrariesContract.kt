@@ -13,6 +13,12 @@ internal object BundledLibrariesContract {
     /** Plugin Center category (the `org.autojs.plugin.INFO` category of the info service). */
     const val ENGINE = "script-modules"
 
+    /**
+     * Resource reference of the localized Plugin Center instruction (`plugin_instruction.md` in the raw folders, generated
+     * from `.readme`); AutoJs6 resolves it in the plugin package.
+     */
+    const val INSTRUCTION_REFERENCE = "@raw/plugin_instruction"
+
     /** Application meta-data with the asset path of the catalog. */
     const val META_DATA_CATALOG = "org.autojs.plugin.scriptModules.CATALOG"
 

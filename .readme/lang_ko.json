@@ -1,0 +1,82 @@
+{
+  "$name": "한국어",
+  "text_current_lowercase": "현재",
+  "text_plugin_synopsis": "AutoJs6 스크립트의 require 용 JavaScript 라이브러리와 Node 호환 심",
+  "h3_languages_with_ascii": "언어 (Languages)",
+  "p_languages_all_supported_for_readme": "현재 README.md 는 다음 언어를 지원합니다",
+  "h3_introduction": "소개",
+  "p_introduction_what": "Bundled Libraries 는 예전에 AutoJs6 에 내장되어 있던 {{ library_count }} 개의 스크립트 라이브러리 (axios, cheerio, dayjs, i18n, pangu, lodash) 와 Node 호환 심 (buffer, events, fs, os, path, process, nodejs) 을 담고 있습니다. AutoJs6 {{ required_host_version_name }} 부터는 AutoJs6 패키지에 이 라이브러리들이 포함되지 않습니다. 이 플러그인을 설치하고 활성화하면 `require('axios')`, `require('fs')` 등과 전역 객체 `axios`, `cheerio`, `dayjs`, `i18n`, `pangu` 를 예전과 똑같이 사용할 수 있습니다.",
+  "p_introduction_how": "플러그인 자체는 리소스 패키지일 뿐입니다. AutoJs6 가 플러그인 패키지에서 라이브러리 파일을 직접 읽으므로 스크립트를 실행할 때 플러그인 프로세스가 시작되지 않으며, 플러그인은 저장소, 네트워크 등의 권한도 필요하지 않습니다 (axios 의 네트워크 요청은 스크립트를 실행하는 AutoJs6 가 보냅니다). 필요 없는 라이브러리는 플러그인 페이지에서 하나씩 끌 수 있습니다.",
+  "h3_libraries": "포함된 라이브러리",
+  "p_libraries_intro": "모듈 이름이 `require` 의 인수입니다. 전역 객체가 있는 라이브러리는 `require` 없이 바로 사용할 수도 있습니다. 각 라이브러리의 출처와 라이선스는 [THIRD_PARTY_NOTICES.md]({{ notices_url }}) 를 참고하세요.",
+  "text_group_libraries": "라이브러리",
+  "text_group_node_shims": "Node 호환 심",
+  "th_library": "라이브러리",
+  "th_modules": "모듈 이름",
+  "th_global": "전역 객체",
+  "th_version": "버전",
+  "th_license": "라이선스",
+  "h3_usage": "사용 방법",
+  "usage_steps": [
+    "AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) 이상을 사용합니다.",
+    "AutoJs6 의 플러그인 센터에서 Bundled Libraries 를 설치하고 ([Releases]({{ repo_url }}/releases) 에서 APK 를 내려받아 설치해도 됩니다), 플러그인이 활성화되어 있는지 확인합니다.",
+    "스크립트에서 평소처럼 필요한 라이브러리를 `require` 하거나 전역 객체를 바로 사용합니다. 예:"
+  ],
+  "p_usage_note": "패키지는 네이티브 라이브러리가 없는 범용 패키지 하나뿐이며, Android {{ min_android_version }} (API {{ android_min_sdk }}) 이상의 기기를 지원합니다.",
+  "h3_switches": "라이브러리별 스위치",
+  "p_switches_intro": "플러그인 페이지 (AutoJs6 플러그인 센터 또는 홈 화면의 Bundled Libraries 아이콘으로 엽니다) 에는 라이브러리마다 스위치가 있으며, 기본값은 모두 켜짐입니다",
+  "switch_points": [
+    "끈 라이브러리는 더 이상 `require` 할 수 없고 전역 객체도 사용할 수 없습니다. 다시 켜면 복구됩니다.",
+    "스위치는 이후의 `require` 에 적용됩니다. 실행 중인 스크립트가 이미 불러온 모듈은 스크립트가 끝날 때까지 유지됩니다.",
+    "`fs` 는 `buffer` 가, `nodejs` 는 `process` 와 `buffer` 가 필요합니다. `buffer` 나 `process` 를 끄면 이에 의존하는 모듈도 불러올 수 없습니다.",
+    "페이지 하단의 \"릴리스 기록\" 에서 버전별 변경 내용을 볼 수 있습니다."
+  ],
+  "h3_unavailable": "플러그인을 사용할 수 없을 때",
+  "p_unavailable_intro": "플러그인이 설치되지 않았거나, 승인되지 않았거나, 플러그인 센터에서 비활성화되었거나, 호환되지 않거나, 라이브러리가 꺼져 있으면 해당 라이브러리의 `require` 와 전역 객체 읽기는 오류를 던집니다",
+  "unavailable_points": [
+    "오류는 `code` 가 `MODULE_NOT_FOUND` 인 `Error` 이며, 메시지는 플러그인을 설치해야 하는지 어디에서 켜야 하는지 알려 줍니다. 스크립트는 `try...catch` 로 처리할 수 있습니다.",
+    "오류 객체에는 `library` (라이브러리 이름) 와 `reason` (`not-installed`, `unauthorized`, `plugin-disabled`, `library-disabled`, `incompatible` 중 하나) 도 있습니다.",
+    "플러그인 상태가 바뀌어도 실행 중인 스크립트는 중단되지 않고 이후의 `require` 만 영향을 받습니다. AutoJs6 의 다른 내장 모듈과 스크립트 자신의 파일은 영향을 받지 않습니다."
+  ],
+  "h3_compatibility": "호환성",
+  "compatibility_points": [
+    "AutoJs6 {{ required_host_version_name }} (빌드 {{ required_host_version_code }}) 이상이 필요합니다. 그 이전 버전의 AutoJs6 는 이 라이브러리들을 내장하고 있어 플러그인이 필요 없습니다.",
+    "Android {{ min_android_version }} (API {{ android_min_sdk }}) 이상을 지원하며, 패키지 하나로 모든 프로세서 아키텍처를 지원합니다.",
+    "라이브러리 파일은 예전에 AutoJs6 에 내장되어 있던 것과 완전히 같으므로 기존 스크립트를 수정할 필요가 없습니다.",
+    "이 플러그인은 AutoJs6 의 기본 JavaScript 스크립트를 위한 것입니다. Node.js 런타임 플러그인의 스크립트는 Node.js 자체 모듈을 사용합니다."
+  ],
+  "h3_faq": "자주 묻는 질문",
+  "faq": [
+    {
+      "q": "AutoJs6 가 이 라이브러리들을 더 이상 내장하지 않는 이유는 무엇인가요?",
+      "a": "일부 스크립트만 사용하기 때문입니다. 플러그인으로 옮기면 AutoJs6 패키지가 작아지고, 필요한 사람만 플러그인을 설치하며, 사용하는 라이브러리만 켜 둘 수 있습니다. 플러그인의 파일은 내장되어 있던 것과 같습니다."
+    },
+    {
+      "q": "스크립트에서 전역 객체 `axios` 를 바로 사용합니다. `require` 로 바꿔야 하나요?",
+      "a": "아니요. 전역 객체 `axios`, `cheerio`, `dayjs`, `i18n`, `pangu` 는 `require` 가 반환하는 모듈과 같으며, 둘 다 이 플러그인에서 불러옵니다."
+    },
+    {
+      "q": "플러그인이 인터넷에 연결하거나 백그라운드에서 실행되나요?",
+      "a": "아니요. 플러그인에는 네트워크 권한이 없고, 스크립트를 실행해도 플러그인 프로세스가 시작되지 않습니다. axios 의 네트워크 요청은 스크립트를 실행하는 AutoJs6 가 보냅니다."
+    },
+    {
+      "q": "플러그인을 승인해야 한다는 오류가 나오면 어떻게 하나요?",
+      "a": "AutoJs6 플러그인 센터나 이 프로젝트의 Releases 에서 설치한 정식 버전은 승인이 필요 없습니다. 직접 빌드한 버전은 서명이 다르므로 먼저 플러그인 센터에서 안내에 따라 승인해야 합니다."
+    }
+  ],
+  "h3_plugin_interface": "플러그인 인터페이스",
+  "p_plugin_interface": "다음 정보는 AutoJs6 호스트와 플러그인 개발자를 위한 것으로, 호스트는 이 식별자들로 플러그인을 발견하고 라이브러리 파일을 읽습니다",
+  "h3_roadmap": "개발 로드맵",
+  "p_roadmap": "출시 전 점검 목록과 출시 절차는 ROADMAP.md 에 기록되어 있으며, 관련 결정은 AutoJs6 저장소의 `docs/augment/ROADMAP.md` 에 있습니다.",
+  "text_link_roadmap": "ROADMAP.md 보기",
+  "h3_release_history": "릴리스 기록",
+  "h5_for_more_release_history": "더 많은 릴리스 기록은 다음을 참고",
+  "h3_build": "빌드",
+  "p_build_intro": "이 절은 소스에서 플러그인을 빌드하려는 개발자를 위한 것입니다.",
+  "h3_license": "라이선스",
+  "p_license": "플러그인 코드와 AutoJs6 를 위해 작성된 모듈 (Node 호환 심, i18n 래퍼, axios 어댑터) 은 [Mozilla Public License 2.0]({{ license_url }}) 으로 배포됩니다. 포함된 서드파티 라이브러리는 각자의 라이선스 (MIT 등) 를 따르며, 자세한 내용은 [THIRD_PARTY_NOTICES.md]({{ notices_url }}) 를 참고하세요.",
+  "h3_links": "관련 링크",
+  "text_link_autojs6": "AutoJs6 프로젝트",
+  "text_link_notices": "서드파티 고지",
+  "p_instruction_more": "소스 코드, 릴리스 기록, 서드파티 라이선스는 [프로젝트 페이지]({{ repo_url }}) 에 있습니다."
+}

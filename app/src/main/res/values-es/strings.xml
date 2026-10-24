@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="plugin_description">Bibliotecas de JavaScript y capas de compatibilidad con Node para require en scripts de AutoJs6</string>
-    <string name="plugin_instruction">Proporciona axios, cheerio, dayjs, i18n, pangu y lodash, y las capas de compatibilidad con Node buffer, events, fs, os, path, process y nodejs, para require y los objetos globales correspondientes de los scripts de AutoJs6. AutoJs6 lee los archivos de este plugin directamente, por lo que los scripts nunca inician el plugin. Cada biblioteca se puede desactivar en la página de inicio del plugin; el cambio se aplica en el siguiente require de un módulo que el script en ejecución aún no ha cargado.</string>
     <string name="text_group_libraries">Bibliotecas</string>
     <string name="text_group_node_shims">Capas de compatibilidad con Node</string>
     <string name="text_library_license">Licencia: %1$s</string>
     <string name="text_library_modules">Módulos: %1$s</string>
     <string name="text_library_version">Versión %1$s</string>
+    <string name="text_release_history">Historial de versiones</string>
+    <string name="text_release_history_load_failed">No se puede cargar el historial de versiones</string>
     <string name="text_settings_summary">Bibliotecas para require en scripts de AutoJs6. Una biblioteca desactivada no se puede cargar con require; los módulos ya cargados por un script en ejecución se mantienen hasta que el script termina.</string>
 </resources>

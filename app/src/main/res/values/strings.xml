@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="plugin_description">JavaScript libraries and Node compatibility shims for require in AutoJs6 scripts</string>
-    <string name="plugin_instruction">Provides axios, cheerio, dayjs, i18n, pangu and lodash, and the Node compatibility shims buffer, events, fs, os, path, process and nodejs, for require and the matching global objects of AutoJs6 scripts. AutoJs6 reads the files from this plugin directly, so scripts never start the plugin. Each library can be switched off on the launch page of the plugin; a switch takes effect for the next require of a module that a running script has not loaded yet.</string>
     <string name="text_group_libraries">Libraries</string>
     <string name="text_group_node_shims">Node compatibility shims</string>
     <string name="text_library_license">License: %1$s</string>
     <string name="text_library_modules">Modules: %1$s</string>
     <string name="text_library_version">Version %1$s</string>
+    <string name="text_release_history">Release history</string>
+    <string name="text_release_history_load_failed">Unable to load the release history</string>
     <string name="text_settings_summary">Libraries for require in AutoJs6 scripts. A library that is switched off cannot be required; modules already loaded by a running script stay until the script ends.</string>
 </resources>

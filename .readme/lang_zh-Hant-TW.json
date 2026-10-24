@@ -1,0 +1,82 @@
+{
+  "$name": "繁體中文 (台灣)",
+  "text_current_lowercase": "目前",
+  "text_plugin_synopsis": "供 AutoJs6 腳本 require 使用的 JavaScript 函式庫與 Node 相容墊片",
+  "h3_languages_with_ascii": "語言 (Languages)",
+  "p_languages_all_supported_for_readme": "目前 README.md 支援以下語言",
+  "h3_introduction": "簡介",
+  "p_introduction_what": "Bundled Libraries 收納了 AutoJs6 過去內建的 {{ library_count }} 個腳本函式庫: axios, cheerio, dayjs, i18n, pangu, lodash, 以及 Node 相容墊片 buffer, events, fs, os, path, process 和 nodejs. 自 AutoJs6 {{ required_host_version_name }} 起, 這些函式庫不再隨 AutoJs6 安裝套件提供; 安裝並啟用本外掛後, 腳本中的 `require('axios')`, `require('fs')` 等, 以及全域物件 `axios`, `cheerio`, `dayjs`, `i18n`, `pangu` 照常可用, 寫法與以前相同.",
+  "p_introduction_how": "外掛本身只是一個資源套件: AutoJs6 直接從外掛的安裝套件讀取函式庫檔案, 腳本執行時不會啟動外掛行程, 外掛也不需要儲存空間, 網路等權限 (axios 的網路請求由執行腳本的 AutoJs6 發出). 用不到的函式庫可以在外掛頁面逐一關閉.",
+  "h3_libraries": "收錄的函式庫",
+  "p_libraries_intro": "模組名稱就是 `require` 的參數; 有全域物件的函式庫也可以不寫 `require` 直接使用. 各函式庫的來源與授權詳見 [THIRD_PARTY_NOTICES.md]({{ notices_url }}).",
+  "text_group_libraries": "函式庫",
+  "text_group_node_shims": "Node 相容墊片",
+  "th_library": "函式庫",
+  "th_modules": "模組名稱",
+  "th_global": "全域物件",
+  "th_version": "版本",
+  "th_license": "授權",
+  "h3_usage": "使用方法",
+  "usage_steps": [
+    "使用 AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) 或更新版本.",
+    "在 AutoJs6 的外掛中心安裝 Bundled Libraries (也可以從 [Releases]({{ repo_url }}/releases) 下載 APK 安裝), 並確認外掛處於啟用狀態.",
+    "在腳本中照常 `require` 需要的函式庫, 或直接使用全域物件, 例如:"
+  ],
+  "p_usage_note": "外掛只有一個通用安裝套件, 不含原生函式庫, 支援 Android {{ min_android_version }} (API {{ android_min_sdk }}) 以上的裝置.",
+  "h3_switches": "逐一開關函式庫",
+  "p_switches_intro": "外掛頁面 (從 AutoJs6 外掛中心或桌面上的 Bundled Libraries 圖示開啟) 為每個函式庫提供一個開關, 預設全部開啟",
+  "switch_points": [
+    "關閉的函式庫不能再被 `require`, 它的全域物件也不能使用; 重新開啟即可恢復.",
+    "開關對之後的 `require` 生效: 正在執行的腳本已經載入的模組會保留到腳本結束.",
+    "`fs` 相依於 `buffer`, `nodejs` 相依於 `process` 與 `buffer`: 關閉 `buffer` 或 `process` 後, 相依於它們的模組也無法載入.",
+    "頁面底部的 \"發行記錄\" 列出各版本的更新內容."
+  ],
+  "h3_unavailable": "外掛無法使用時",
+  "p_unavailable_intro": "外掛未安裝, 未授權, 在外掛中心被停用, 版本不相容, 或某個函式庫被關閉時, `require` 該函式庫或讀取它的全域物件都會擲出錯誤",
+  "unavailable_points": [
+    "錯誤是 `code` 為 `MODULE_NOT_FOUND` 的 `Error`, 訊息會說明需要安裝外掛還是到哪裡開啟, 腳本可以用 `try...catch` 處理.",
+    "錯誤物件還帶有 `library` (函式庫名稱) 與 `reason` (原因: `not-installed`, `unauthorized`, `plugin-disabled`, `library-disabled` 或 `incompatible`).",
+    "外掛狀態的變化不會中斷正在執行的腳本, 只影響之後的 `require`; AutoJs6 的其他內建模組與腳本自己的檔案不受影響."
+  ],
+  "h3_compatibility": "相容性",
+  "compatibility_points": [
+    "需要 AutoJs6 {{ required_host_version_name }} (建置 {{ required_host_version_code }}) 或更新版本; 更早的 AutoJs6 自帶這些函式庫, 不需要本外掛.",
+    "支援 Android {{ min_android_version }} (API {{ android_min_sdk }}) 以上, 一個安裝套件適用於所有處理器架構.",
+    "函式庫檔案與 AutoJs6 過去內建的完全相同, 原有腳本無需修改.",
+    "本外掛服務於 AutoJs6 預設的 JavaScript 腳本; Node.js 執行環境外掛中的腳本使用 Node.js 內建的模組."
+  ],
+  "h3_faq": "常見問題",
+  "faq": [
+    {
+      "q": "為什麼 AutoJs6 不再內建這些函式庫?",
+      "a": "這些函式庫只有一部分腳本會用到. 移到外掛後 AutoJs6 安裝套件更小, 需要的人安裝外掛即可, 還可以只開啟用得到的函式庫. 外掛裡的檔案與原先內建的相同."
+    },
+    {
+      "q": "腳本裡直接用全域物件 `axios`, 需要改成 `require` 嗎?",
+      "a": "不需要. 全域物件 `axios`, `cheerio`, `dayjs`, `i18n`, `pangu` 與 `require` 得到的是同一個模組, 都從本外掛載入."
+    },
+    {
+      "q": "外掛會連網或在背景執行嗎?",
+      "a": "不會. 外掛沒有網路權限, 腳本執行時也不會啟動外掛行程. axios 的網路請求由執行腳本的 AutoJs6 發出."
+    },
+    {
+      "q": "錯誤提示需要授權外掛怎麼辦?",
+      "a": "從 AutoJs6 外掛中心或本專案 Releases 安裝的正式版無需授權. 自行建置的版本簽章不同, 需要先在外掛中心依提示授權."
+    }
+  ],
+  "h3_plugin_interface": "外掛介面",
+  "p_plugin_interface": "以下資訊面向 AutoJs6 主程式與外掛開發者, 主程式透過這些識別碼發現外掛並讀取函式庫檔案",
+  "h3_roadmap": "開發路線圖",
+  "p_roadmap": "發行前清單與發行步驟記錄在 ROADMAP.md 中; 相關決策位於 AutoJs6 儲存庫的 `docs/augment/ROADMAP.md`.",
+  "text_link_roadmap": "檢視 ROADMAP.md",
+  "h3_release_history": "發行歷史",
+  "h5_for_more_release_history": "更多發行歷史可參閱",
+  "h3_build": "建置",
+  "p_build_intro": "本節面向希望從原始碼建置外掛的開發者.",
+  "h3_license": "授權",
+  "p_license": "外掛程式碼與 AutoJs6 撰寫的模組 (Node 相容墊片, i18n 封裝與 axios 轉接層) 採用 [Mozilla Public License 2.0]({{ license_url }}). 收納的第三方函式庫保留各自的授權 (MIT 等), 詳見 [THIRD_PARTY_NOTICES.md]({{ notices_url }}).",
+  "h3_links": "相關連結",
+  "text_link_autojs6": "AutoJs6 專案",
+  "text_link_notices": "第三方聲明",
+  "p_instruction_more": "原始碼, 發行歷史與第三方授權見 [專案首頁]({{ repo_url }})."
+}

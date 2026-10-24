@@ -1,0 +1,24 @@
+{
+  "changelog_label_hint": "提示",
+  "changelog_label_feature": "新增",
+  "changelog_label_fix": "修復",
+  "changelog_label_improvement": "優化",
+  "changelog_label_dependency": "依賴",
+  "$data": {
+    "v1.0.0": {
+      "released_date": "2026/10/24",
+      "hint": [
+        "需要 AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) 或更高版本",
+        "自 AutoJs6 {{ required_host_version_name }} 起, 下列庫不再隨 AutoJs6 提供: 安裝本插件後 require 與全域物件照常可用, 原有腳本無需修改; 未安裝或停用本插件時, require 這些庫會得到說明如何安裝或開啟的錯誤"
+      ],
+      "feature": [
+        "axios, cheerio, dayjs, i18n (含 banana-i18n), pangu 與 lodash, 可透過 require 使用, 其中 axios, cheerio, dayjs, i18n 與 pangu 也可直接作為全域物件使用",
+        "Node 相容墊片 buffer, events, fs, os, path, process 與 nodejs, 可透過 require 使用",
+        "插件頁面可逐個開關各庫 (預設全部開啟) 並查看發佈記錄, 關閉的庫在之後的 require 中不可用"
+      ],
+      "dependency": [
+        "附加 AutoJs6 Common Plugin API"
+      ]
+    }
+  }
+}

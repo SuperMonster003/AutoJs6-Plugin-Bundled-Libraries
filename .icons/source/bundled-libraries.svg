@@ -1,0 +1,20 @@
+<!-- Bundled Libraries icon source: three books on a shelf, the third leaning on the second ("a shelf of libraries").
+     Colored artwork for both themes (non-Three plugins may use color): Icon Studio imports this file as a fixed
+     1728 px snapshot (.icons/assets) and the recipe keeps its colors (tone mode "original"). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect x="96" y="128" width="80" height="272" rx="12" fill="#1E88E5"/>
+  <rect x="96" y="160" width="80" height="16" fill="#BBDEFB"/>
+  <rect x="96" y="352" width="80" height="16" fill="#BBDEFB"/>
+  <rect x="120" y="216" width="32" height="88" rx="6" fill="#BBDEFB"/>
+  <rect x="192" y="96" width="80" height="304" rx="12" fill="#F9A825"/>
+  <rect x="192" y="128" width="80" height="16" fill="#FFF3C4"/>
+  <rect x="192" y="352" width="80" height="16" fill="#FFF3C4"/>
+  <rect x="216" y="192" width="32" height="104" rx="6" fill="#FFF3C4"/>
+  <g transform="translate(358 400) rotate(-18)">
+    <rect x="0" y="-256" width="76" height="256" rx="12" fill="#43A047"/>
+    <rect x="0" y="-224" width="76" height="16" fill="#C8E6C9"/>
+    <rect x="0" y="-48" width="76" height="16" fill="#C8E6C9"/>
+    <rect x="22" y="-176" width="32" height="80" rx="6" fill="#C8E6C9"/>
+  </g>
+  <rect x="72" y="400" width="372" height="24" rx="12" fill="#78909C"/>
+</svg>

@@ -1,0 +1,30 @@
+{
+  "repo_url": "https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries",
+  "repo_slug": "SuperMonster003/AutoJs6-Plugin-Bundled-Libraries",
+  "icon_alt": "autojs6-plugin-bundled-libraries-ic-launcher",
+  "license_url": "https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries/blob/master/LICENSE",
+  "roadmap_url": "https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries/blob/master/ROADMAP.md",
+  "notices_url": "https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries/blob/master/THIRD_PARTY_NOTICES.md",
+  "autojs6_url": "https://github.com/SuperMonster003/AutoJs6",
+  "plugin_application_id": "io.github.supermonster003.autojs6.plugin.bundled.libraries",
+  "plugin_id": "bundled-libraries",
+  "plugin_engine": "script-modules",
+  "info_action": "org.autojs.plugin.INFO",
+  "wake_action": "org.autojs.plugin.action.WAKE",
+  "library_action": "org.autojs.plugin.SCRIPT_MODULE_LIBRARY",
+  "catalog_meta_data": "org.autojs.plugin.scriptModules.CATALOG",
+  "catalog_asset": "script-modules.json",
+  "catalog_schema_version": "1",
+  "required_host_version_code": "5935",
+  "required_host_version_name": "6.8.0",
+  "android_min_sdk": "24",
+  "min_android_version": "7.0",
+  "library_count": "13",
+  "global_objects": {
+    "axios": "axios",
+    "cheerio": "cheerio",
+    "dayjs": "dayjs",
+    "i18n": "i18n",
+    "pangu": "pangu"
+  }
+}

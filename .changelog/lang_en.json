@@ -1,0 +1,24 @@
+{
+  "changelog_label_hint": "Hint",
+  "changelog_label_feature": "Feature",
+  "changelog_label_fix": "Fix",
+  "changelog_label_improvement": "Improvement",
+  "changelog_label_dependency": "Dependency",
+  "$data": {
+    "v1.0.0": {
+      "released_date": "2026/10/24",
+      "hint": [
+        "Requires AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) or later",
+        "Starting with AutoJs6 {{ required_host_version_name }}, the libraries below no longer come with AutoJs6: with this plugin installed, require and the global objects work as before and existing scripts need no change; without the plugin, or with it disabled, require of these libraries gives an error that says how to install or enable it"
+      ],
+      "feature": [
+        "axios, cheerio, dayjs, i18n (with banana-i18n), pangu and lodash for require, with axios, cheerio, dayjs, i18n and pangu also available as global objects",
+        "Node compatibility shims buffer, events, fs, os, path, process and nodejs for require",
+        "Plugin page with a switch per library (all on by default) and the release history; a library switched off is unavailable to later require calls"
+      ],
+      "dependency": [
+        "Attach AutoJs6 Common Plugin API"
+      ]
+    }
+  }
+}

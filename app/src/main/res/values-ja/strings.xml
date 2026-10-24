@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="plugin_description">AutoJs6 スクリプトの require 用 JavaScript ライブラリと Node 互換シム</string>
-    <string name="plugin_instruction">axios, cheerio, dayjs, i18n, pangu, lodash と Node 互換シム buffer, events, fs, os, path, process, nodejs を AutoJs6 スクリプトの require と対応するグローバルオブジェクトに提供します. AutoJs6 はこのプラグインのファイルを直接読み込むため, スクリプトがプラグインを起動することはありません. 各ライブラリはプラグインの起動ページでオフにでき, 実行中のスクリプトがまだ読み込んでいないモジュールの次回の require から反映されます.</string>
     <string name="text_group_libraries">ライブラリ</string>
     <string name="text_group_node_shims">Node 互換シム</string>
     <string name="text_library_license">ライセンス: %1$s</string>
     <string name="text_library_modules">モジュール: %1$s</string>
     <string name="text_library_version">バージョン %1$s</string>
+    <string name="text_release_history">リリース履歴</string>
+    <string name="text_release_history_load_failed">リリース履歴を読み込めません</string>
     <string name="text_settings_summary">AutoJs6 スクリプトの require 用ライブラリ. オフにしたライブラリは require できません. 実行中のスクリプトが読み込み済みのモジュールはスクリプト終了まで残ります.</string>
 </resources>
