@@ -199,6 +199,7 @@ _2026/10/24_
 - `ميزة` axios و cheerio و dayjs و i18n (مع banana-i18n) و pangu و lodash عبر require, وتتوفر axios و cheerio و dayjs و i18n و pangu أيضا ككائنات عامة
 - `ميزة` طبقات توافق Node وهي buffer و events و fs و os و path و process و nodejs عبر require
 - `ميزة` صفحة المكون بمفتاح لكل مكتبة (كلها مفعلة افتراضيا) وسجل الإصدارات; المكتبة الموقوفة غير متاحة لاستدعاءات require اللاحقة
+- `ميزة` صفحة المكون تتبع لغة AutoJs6 ووضع الليل ولون الموضوع فيه, وتتبع النظام إذا لم يكن AutoJs6 مثبتا أو تعذرت قراءة إعداداته
 - `تبعية` إرفاق AutoJs6 Common Plugin API
 
 ##### لمزيد من سجل الإصدارات

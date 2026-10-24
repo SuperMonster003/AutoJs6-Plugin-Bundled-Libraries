@@ -199,6 +199,7 @@ _2026/10/24_
 - `Función` axios, cheerio, dayjs, i18n (con banana-i18n), pangu y lodash para require; axios, cheerio, dayjs, i18n y pangu también están disponibles como objetos globales
 - `Función` Capas de compatibilidad con Node buffer, events, fs, os, path, process y nodejs para require
 - `Función` Página del plugin con un interruptor por biblioteca (todos activados de forma predeterminada) y el historial de versiones; una biblioteca desactivada no está disponible para los require posteriores
+- `Función` La página del plugin sigue el idioma, el modo nocturno y el color del tema de AutoJs6, y el sistema cuando AutoJs6 no está instalado o no se pueden leer sus ajustes
 - `Dependencia` Se agrega AutoJs6 Common Plugin API
 
 ##### Para más historial de versiones

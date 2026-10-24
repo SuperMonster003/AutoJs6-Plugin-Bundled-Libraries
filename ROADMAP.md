@@ -24,6 +24,7 @@ Host side: AutoJs6 `docs/augment/ROADMAP.md` P4.3 (term T11, appendix C Q5 / Q6 
   - [x] Routing values for the official index: `plugin_id` `bundled-libraries`, `plugin_engine` `script-modules`, `plugin_variant` `default`, `plugin_requires_host_version` (the index generator resolves them to `5935`).
   - [x] `assembleDebug`, `assembleRelease`, unit tests and lint pass locally; the release build tasks `verifySignedReleaseArtifacts` / `appendDigestToReleasedFiles` check the signed APK (one universal APK, no native code, every module file stored uncompressed).
   - [x] Install smoke test on G8441 with the debug APK of `bd8b6ef` and a host debug 5935 without the module files (host `tools/augment/device_plugin_modules_check.py`, 2026-10-24): not installed, enabled, disabled in the Plugin Center, axios / buffer switched off, uninstalled, 22 items each, the same in both states of the host module layer, PASS.
+  - [x] The settings page and "Release history" follow AutoJs6's language, night mode and theme colors (host roadmap appendix C Q115, the maintainer chose (2) on 2026-10-24): `HostAppearanceActivity` reads the versioned host settings contract (`AutoJs6HostSettingsContract`; `libs/common-plugin-api.aar` updated to the build that has it), the manifest queries `org.autojs.autojs6`, the system appearance when AutoJs6 is not installed, disabled or refuses the call; no new strings. G8441 (debug 5935 without the module files, 2026-10-24): `.python/device_host_appearance_check.py` 24 checks PASS (Japanese / dark / indigo on a cold start, Traditional Chinese (Taiwan) / light / navajo white after returning to the page, the release history page, the system appearance with AutoJs6 disabled), and `device_plugin_modules_check.py` again 5 states x 22 items, PASS.
   - [ ] `requiresHostVersion` set to the published AutoJs6 6.8.0 build (see "Release steps").
   - [ ] Signed release, official index entry (engine `script-modules`), documentation site entry.
 
@@ -46,8 +47,8 @@ Host side: AutoJs6 `docs/augment/ROADMAP.md` P4.3 (term T11, appendix C Q5 / Q6 
 
 ## Open questions / 待决事项
 
-Registered in the host roadmap appendix C: Q115 (the full settings-page specification for standalone plugins, recommended: this resource-only plugin keeps its simple switch page plus "Release history"), Q116 (the icon design), Q117 (default branch `master` instead of `main`). The recommended options are applied.
+Registered in the host roadmap appendix C: Q115 (the settings-page specification for standalone plugins; the maintainer chose (2) on 2026-10-24: follow AutoJs6's appearance, done, see P3), Q116 (the icon design), Q117 (default branch `master` instead of `main`). The recommended options of Q116 / Q117 are applied.
 
-在宿主 roadmap 附录 C 登记: Q115 (独立插件设置页完整规范是否适用, 推荐: 本资源插件保持简单开关页加 "发行历史"), Q116 (图标设计), Q117 (默认分支用 `master` 而不是 `main`). 推荐项已先行.
+在宿主 roadmap 附录 C 登记: Q115 (独立插件设置页规范做到哪一步; 维护者 2026-10-24 选 (2): 跟随 AutoJs6 外观, 已完成, 见 P3), Q116 (图标设计), Q117 (默认分支用 `master` 而不是 `main`). Q116 / Q117 推荐项已先行.
 
 - [ ] P4 After the release: AutoJs6 removes its copies of the files (host roadmap P5.2).

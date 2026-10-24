@@ -1,6 +1,5 @@
 package io.github.supermonster003.autojs6.plugin.bundled.libraries
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
@@ -14,10 +13,12 @@ import android.widget.TextView
 
 /**
  * The launch page: the libraries in two sections (libraries and Node compatibility shims), one switch each, and the
- * release history. A switch takes effect for the next `require` of a module that the running script has not loaded yet.
- * zh-CN: 启动页: 库分两节 (库与 Node 兼容垫片), 每个一个开关, 以及发行历史. 开关对运行中的脚本尚未加载的模块, 在下一次 `require` 时生效.
+ * release history, in AutoJs6's appearance. A switch takes effect for the next `require` of a module that the running
+ * script has not loaded yet.
+ * zh-CN: 启动页: 库分两节 (库与 Node 兼容垫片), 每个一个开关, 以及发行历史, 使用 AutoJs6 的外观. 开关对运行中的脚本尚未加载的模块,
+ * 在下一次 `require` 时生效.
  */
-class SettingsActivity : Activity() {
+class SettingsActivity : HostAppearanceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +57,7 @@ class SettingsActivity : Activity() {
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
             isChecked = LibraryCatalog.isEnabled(context, library.id)
             setOnCheckedChangeListener { _, checked -> LibraryCatalog.setEnabled(context, library.id, checked) }
+            tint(this)
         }, MATCH_PARENT, WRAP_CONTENT)
         val details = listOfNotNull(
             library.version?.let { getString(R.string.text_library_version, it) },

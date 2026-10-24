@@ -1,6 +1,5 @@
 package io.github.supermonster003.autojs6.plugin.bundled.libraries
 
-import android.app.Activity
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.SpannableStringBuilder
@@ -14,15 +13,16 @@ import android.widget.ScrollView
 import android.widget.TextView
 
 /**
- * Release history of the launch page: the bundled changelog of the current language, English when there is none.
- * zh-CN: 启动页的发行历史: 当前语言的内置更新日志, 没有时使用英语.
+ * Release history of the launch page: the bundled changelog of the current language (AutoJs6's, see
+ * [HostAppearanceActivity]), English when there is none.
+ * zh-CN: 启动页的发行历史: 当前语言 (AutoJs6 的语言, 见 [HostAppearanceActivity]) 的内置更新日志, 没有时使用英语.
  */
-class ReleaseHistoryActivity : Activity() {
+class ReleaseHistoryActivity : HostAppearanceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTitle(R.string.text_release_history)
-        actionBar?.setDisplayHomeAsUpEnabled(true)
+        showUpArrow()
         val content = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(dp(16), dp(8), dp(16), dp(16))

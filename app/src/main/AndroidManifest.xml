@@ -3,6 +3,11 @@
 
     <uses-permission android:name="org.autojs.permission.PLUGIN" />
 
+    <!-- The settings pages follow AutoJs6's language, night mode and theme colors (host settings contract). -->
+    <queries>
+        <package android:name="org.autojs.autojs6" />
+    </queries>
+
     <!--
         A resource-only plugin (host roadmap T11 / P4.3): AutoJs6 reads assets/script-modules.json and the files under
         assets/modules straight from this APK, so no script call ever starts this process.

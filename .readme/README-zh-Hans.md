@@ -199,6 +199,7 @@ _2026/10/24_
 - `新增` axios, cheerio, dayjs, i18n (含 banana-i18n), pangu 与 lodash, 可通过 require 使用, 其中 axios, cheerio, dayjs, i18n 与 pangu 也可直接作为全局对象使用
 - `新增` Node 兼容垫片 buffer, events, fs, os, path, process 与 nodejs, 可通过 require 使用
 - `新增` 插件页面可逐个开关各库 (默认全部开启) 并查看发行历史, 关闭的库在之后的 require 中不可用
+- `新增` 插件页面跟随 AutoJs6 的语言, 夜间模式与主题色, 未安装 AutoJs6 或无法读取其设置时跟随系统
 - `依赖` 附加 AutoJs6 Common Plugin API
 
 ##### 更多发行历史可参阅

@@ -199,6 +199,7 @@ _2026/10/24_
 - `新增` axios, cheerio, dayjs, i18n (含 banana-i18n), pangu 與 lodash, 可透過 require 使用, 其中 axios, cheerio, dayjs, i18n 與 pangu 也可直接作為全域物件使用
 - `新增` Node 相容墊片 buffer, events, fs, os, path, process 與 nodejs, 可透過 require 使用
 - `新增` 外掛頁面可逐一開關各函式庫 (預設全部開啟) 並檢視發行記錄, 關閉的函式庫在之後的 require 中無法使用
+- `新增` 外掛頁面跟隨 AutoJs6 的語言, 夜間模式與主題色, 未安裝 AutoJs6 或無法讀取其設定時跟隨系統
 - `相依性` 附加 AutoJs6 Common Plugin API
 
 ##### 更多發行歷史可參閱

@@ -14,7 +14,8 @@
       "feature": [
         "axios, cheerio, dayjs, i18n (含 banana-i18n), pangu 與 lodash, 可透過 require 使用, 其中 axios, cheerio, dayjs, i18n 與 pangu 也可直接作為全域物件使用",
         "Node 相容墊片 buffer, events, fs, os, path, process 與 nodejs, 可透過 require 使用",
-        "插件頁面可逐個開關各庫 (預設全部開啟) 並查看發佈記錄, 關閉的庫在之後的 require 中不可用"
+        "插件頁面可逐個開關各庫 (預設全部開啟) 並查看發佈記錄, 關閉的庫在之後的 require 中不可用",
+        "插件頁面跟隨 AutoJs6 的語言, 夜間模式與主題色, 未安裝 AutoJs6 或無法讀取其設定時跟隨系統"
       ],
       "dependency": [
         "附加 AutoJs6 Common Plugin API"

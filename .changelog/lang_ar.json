@@ -14,7 +14,8 @@
       "feature": [
         "axios و cheerio و dayjs و i18n (مع banana-i18n) و pangu و lodash عبر require, وتتوفر axios و cheerio و dayjs و i18n و pangu أيضا ككائنات عامة",
         "طبقات توافق Node وهي buffer و events و fs و os و path و process و nodejs عبر require",
-        "صفحة المكون بمفتاح لكل مكتبة (كلها مفعلة افتراضيا) وسجل الإصدارات; المكتبة الموقوفة غير متاحة لاستدعاءات require اللاحقة"
+        "صفحة المكون بمفتاح لكل مكتبة (كلها مفعلة افتراضيا) وسجل الإصدارات; المكتبة الموقوفة غير متاحة لاستدعاءات require اللاحقة",
+        "صفحة المكون تتبع لغة AutoJs6 ووضع الليل ولون الموضوع فيه, وتتبع النظام إذا لم يكن AutoJs6 مثبتا أو تعذرت قراءة إعداداته"
       ],
       "dependency": [
         "إرفاق AutoJs6 Common Plugin API"

@@ -199,6 +199,7 @@ _2026/10/24_
 - `機能` axios, cheerio, dayjs, i18n (banana-i18n を含む), pangu, lodash を require で利用可能. axios, cheerio, dayjs, i18n, pangu はグローバルオブジェクトとしても利用可能
 - `機能` Node 互換シム buffer, events, fs, os, path, process, nodejs を require で利用可能
 - `機能` プラグインのページでライブラリごとにオン / オフを切り替え (既定はすべてオン), リリース履歴を表示. オフにしたライブラリは以降の require で利用不可
+- `機能` プラグインのページは AutoJs6 の言語, 夜間モード, テーマカラーに従う. AutoJs6 が未インストール, または設定を読み取れない場合はシステムに従う
 - `依存関係` AutoJs6 Common Plugin API を追加
 
 ##### その他のリリース履歴は以下を参照
