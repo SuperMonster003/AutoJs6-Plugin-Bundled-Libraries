@@ -15,7 +15,7 @@ Host side: AutoJs6 `docs/augment/ROADMAP.md` P4.3 (term T11, appendix C Q5 / Q6 
 
 - [x] P1 Repository, catalog `script-modules.json`, files copied from AutoJs6 `assets/modules`, build check of the catalog, info service, launch page with switches, debug APK (2026-10-24, host session augment-p4-3).
 - [x] P2 Host integration verified on G8441 in the four states (not installed, enabled, disabled in the Plugin Center or per library, uninstalled), both states of the host module layer; see the host roadmap appendix A "P4.3" (2026-10-24: 5 states x 22 items, both layer states the same, local files first on the normal build; the debug build gained `DebugLibrarySwitchReceiver` for the per-library switches from adb).
-- [ ] P3 Before the first release (host roadmap appendix C Q104, the maintainer chose (1) on 2026-10-24: make the repository releasable now, release with AutoJs6 6.8.0):
+- [x] P3 Before the first release (host roadmap appendix C Q104, the maintainer chose (1) on 2026-10-24: make the repository releasable now, release with AutoJs6 6.8.0; on 2026-10-29 the maintainer chose to release now, before 6.8.0 is final, see Q180):
   - [x] Remote repository `SuperMonster003/AutoJs6-Plugin-Bundled-Libraries` (default branch `master` like the other official plugins, no tag) and push authorization (2026-10-24).
   - [x] Icon Studio icon: three books on a shelf, `.icons/recipe.json` with the portable runtime 1.3.0, `generate_icon_studio.py --check` verifies 15 resources; the placeholder vector is removed.
   - [x] 10-language `.readme` / `.changelog` sources and `.python/generate_markdown.py` (36 generated files: README x11, CHANGELOG x14, plugin instruction x11); the library tables are generated from `script-modules.json`; the settings page has "Release history".
@@ -25,10 +25,13 @@ Host side: AutoJs6 `docs/augment/ROADMAP.md` P4.3 (term T11, appendix C Q5 / Q6 
   - [x] `assembleDebug`, `assembleRelease`, unit tests and lint pass locally; the release build tasks `verifySignedReleaseArtifacts` / `appendDigestToReleasedFiles` check the signed APK (one universal APK, no native code, every module file stored uncompressed).
   - [x] Install smoke test on G8441 with the debug APK of `bd8b6ef` and a host debug 5935 without the module files (host `tools/augment/device_plugin_modules_check.py`, 2026-10-24): not installed, enabled, disabled in the Plugin Center, axios / buffer switched off, uninstalled, 22 items each, the same in both states of the host module layer, PASS.
   - [x] The settings page and "Release history" follow AutoJs6's language, night mode and theme colors (host roadmap appendix C Q115, the maintainer chose (2) on 2026-10-24): `HostAppearanceActivity` reads the versioned host settings contract (`AutoJs6HostSettingsContract`; `libs/common-plugin-api.aar` updated to the build that has it), the manifest queries `org.autojs.autojs6`, the system appearance when AutoJs6 is not installed, disabled or refuses the call; no new strings. G8441 (debug 5935 without the module files, 2026-10-24): `.python/device_host_appearance_check.py` 24 checks PASS (Japanese / dark / indigo on a cold start, Traditional Chinese (Taiwan) / light / navajo white after returning to the page, the release history page, the system appearance with AutoJs6 disabled), and `device_plugin_modules_check.py` again 5 states x 22 items, PASS.
-  - [ ] `requiresHostVersion` set to the published AutoJs6 6.8.0 build (see "Release steps").
-  - [ ] Signed release, official index entry (engine `script-modules`), documentation site entry.
+  - [x] `requiresHostVersion`: released with build 5935 (the 6.8.0 development build that reads the catalog), not the final 6.8.0 build (2026-10-29, Q180).
+  - [x] Signed release, official index entry (engine `script-modules`), documentation site entry (2026-10-29, host session augment-bl-publish): `v1.0.0` = `d287681` (versionCode 7, one universal APK of 1125943 bytes, `releases/autojs6-plugin-bundled-libraries-v1.0.0-universal-b45b2448.apk`), GitHub Release with the APK and SHA256SUMS; the signed build first failed because four non-script files (`.md`, `.ts`, `LICENSE`, `.txt`) were compressed, fixed by `d287681` (`noCompress`); official index `9b5976f` (release manifest `7.json`, Icon Studio catalog icon); documentation site page `bundledLibraries` (`9d6af71`, generated files `3f6abdf`).
 
-## Release steps (after AutoJs6 6.8.0 is final) / 发布步骤 (6.8.0 定版后)
+## Release steps / 发布步骤
+
+Followed for 1.0.0 on 2026-10-29 with build 5935 in step 1 (see P3 and Q180); the steps also apply to later releases.
+zh-CN: 1.0.0 已于 2026-10-29 按此发布, 第 1 步用构建 5935 (见 P3 与 Q180); 之后的版本照此执行.
 
 1. Set `requiredHostVersionCode` in `app/build.gradle.kts` and `required_host_version_code` in `.readme/common.json` to the build number of AutoJs6 6.8.0 (`check_repository` keeps them equal), check `required_host_version_name`, then run `.python/generate_markdown.bat`.
    zh-CN: 把 `app/build.gradle.kts` 的 `requiredHostVersionCode` 与 `.readme/common.json` 的 `required_host_version_code` 改为 6.8.0 的构建号 (两处由 `check_repository` 保持一致), 核对 `required_host_version_name`, 再运行 `.python/generate_markdown.bat`.
@@ -50,5 +53,9 @@ Host side: AutoJs6 `docs/augment/ROADMAP.md` P4.3 (term T11, appendix C Q5 / Q6 
 Registered in the host roadmap appendix C: Q115 (the settings-page specification for standalone plugins; the maintainer chose (2) on 2026-10-24: follow AutoJs6's appearance, done, see P3), Q116 (the icon design), Q117 (default branch `master` instead of `main`). The recommended options of Q116 / Q117 are applied.
 
 在宿主 roadmap 附录 C 登记: Q115 (独立插件设置页规范做到哪一步; 维护者 2026-10-24 选 (2): 跟随 AutoJs6 外观, 已完成, 见 P3), Q116 (图标设计), Q117 (默认分支用 `master` 而不是 `main`). Q116 / Q117 推荐项已先行.
+
+Q180 (2026-10-29, host session augment-bl-publish): 1.0.0 was released before AutoJs6 6.8.0 is final, with `requiresHostVersion` 5935 (the maintainer's choice). When 6.8.0 is final: (1) keep 5935 and publish 1.0.1 only when a change needs it (recommended, applied); (2) publish 1.0.1 that raises the minimum host to the final 6.8.0 build (one more release: build, GitHub Release, index manifest, README).
+
+Q180 (2026-10-29): 1.0.0 在 6.8.0 定版前以最低宿主 5935 发布 (维护者选择). 6.8.0 定版后: (1) 保持 5935, 需要时再出 1.0.1 (推荐, 已先行); (2) 出 1.0.1 把最低宿主抬到 6.8.0 定版构建 (多一次发布: 构建, Release, 索引清单, README).
 
 - [ ] P4 After the release: AutoJs6 removes its copies of the files (host roadmap P5.2).
