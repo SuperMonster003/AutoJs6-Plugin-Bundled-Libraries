@@ -152,8 +152,10 @@ android {
     }
 
     // The module files are read by AutoJs6 as they are; compressing them only costs the host a decompression.
+    // The suffixes cover every file under assets/modules (verifySignedReleaseArtifacts checks it).
     // zh-CN: 模块文件由 AutoJs6 原样读取; 压缩只会让宿主多一次解压.
-    androidResources { noCompress += listOf("js", "json") }
+    // zh-CN: 后缀覆盖 assets/modules 下的全部文件 (由 verifySignedReleaseArtifacts 检查).
+    androidResources { noCompress += listOf("js", "json", "md", "ts", "txt", "LICENSE") }
 }
 
 androidComponents {
