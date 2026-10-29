@@ -58,4 +58,4 @@ Q180 (2026-10-29, host session augment-bl-publish): 1.0.0 was released before Au
 
 Q180 (2026-10-29): 1.0.0 在 6.8.0 定版前以最低宿主 5935 发布 (维护者选择). 6.8.0 定版后: (1) 保持 5935, 需要时再出 1.0.1 (推荐, 已先行); (2) 出 1.0.1 把最低宿主抬到 6.8.0 定版构建 (多一次发布: 构建, Release, 索引清单, README).
 
-- [ ] P4 After the release: AutoJs6 removes its copies of the files (host roadmap P5.2).
+- [x] P4 After the release: AutoJs6 removes its copies of the files (host roadmap P5.2). Done on 2026-10-29 in host `67ef4c1a5` (P5.2 stage 5, host session augment-bl-publish): AutoJs6 and the apps it packages no longer carry the 32 files, so this plugin is their only source. Packaged apps do not include them until a separate host project copies the libraries a packaged script uses from the installed plugin (host appendix C Q181, the maintainer chose (3)). The host keeps test copies of pangu and path (Q182) and its `tools/pangu` writes to them, so a pangu upgrade is copied here by hand.
