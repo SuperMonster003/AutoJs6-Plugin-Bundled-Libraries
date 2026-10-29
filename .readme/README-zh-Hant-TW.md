@@ -80,7 +80,7 @@ Bundled Libraries 收納了 AutoJs6 過去內建的 13 個腳本函式庫: axios
 
 ******
 
-1. 使用 AutoJs6 6.8.0 (5935) 或更新版本.
+1. 使用 AutoJs6 6.8.0 (建置 5935) 或更新版本.
 2. 在 AutoJs6 的外掛中心安裝 Bundled Libraries (也可以從 [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries/releases) 下載 APK 安裝), 並確認外掛處於啟用狀態.
 3. 在腳本中照常 `require` 需要的函式庫, 或直接使用全域物件, 例如:
 
@@ -192,9 +192,9 @@ native library: none (all ABIs)
 
 #### v1.0.0
 
-_2026/10/24_
+_2026/10/29_
 
-- `提示` 需要 AutoJs6 6.8.0 (5935) 或更新版本
+- `提示` 需要 AutoJs6 6.8.0 (建置 5935) 或更新版本
 - `提示` 自 AutoJs6 6.8.0 起, 下列函式庫不再隨 AutoJs6 提供: 安裝本外掛後 require 與全域物件照常可用, 原有腳本無需修改; 未安裝或停用本外掛時, require 這些函式庫會得到說明如何安裝或開啟的錯誤
 - `新增` axios, cheerio, dayjs, i18n (含 banana-i18n), pangu 與 lodash, 可透過 require 使用, 其中 axios, cheerio, dayjs, i18n 與 pangu 也可直接作為全域物件使用
 - `新增` Node 相容墊片 buffer, events, fs, os, path, process 與 nodejs, 可透過 require 使用

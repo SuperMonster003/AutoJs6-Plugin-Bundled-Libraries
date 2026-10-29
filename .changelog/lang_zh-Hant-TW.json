@@ -6,9 +6,9 @@
   "changelog_label_dependency": "相依性",
   "$data": {
     "v1.0.0": {
-      "released_date": "2026/10/24",
+      "released_date": "2026/10/29",
       "hint": [
-        "需要 AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) 或更新版本",
+        "需要 AutoJs6 {{ required_host_version_name }} (建置 {{ required_host_version_code }}) 或更新版本",
         "自 AutoJs6 {{ required_host_version_name }} 起, 下列函式庫不再隨 AutoJs6 提供: 安裝本外掛後 require 與全域物件照常可用, 原有腳本無需修改; 未安裝或停用本外掛時, require 這些函式庫會得到說明如何安裝或開啟的錯誤"
       ],
       "feature": [

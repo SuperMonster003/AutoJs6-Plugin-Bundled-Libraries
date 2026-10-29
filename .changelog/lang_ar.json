@@ -6,9 +6,9 @@
   "changelog_label_dependency": "تبعية",
   "$data": {
     "v1.0.0": {
-      "released_date": "2026/10/24",
+      "released_date": "2026/10/29",
       "hint": [
-        "يتطلب AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) أو أحدث",
+        "يتطلب AutoJs6 {{ required_host_version_name }} (البناء {{ required_host_version_code }}) أو أحدث",
         "بدءا من AutoJs6 {{ required_host_version_name }} لم تعد المكتبات التالية تأتي مع AutoJs6: بعد تثبيت هذا المكون يعمل require والكائنات العامة كما كانت ولا تحتاج السكربتات الحالية إلى تعديل; ومن دون المكون أو عند تعطيله يعطي require لهذه المكتبات خطأ يوضح كيفية تثبيته أو تفعيله"
       ],
       "feature": [

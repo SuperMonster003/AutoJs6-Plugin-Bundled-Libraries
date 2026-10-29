@@ -80,7 +80,7 @@ Bundled Libraries は, かつて AutoJs6 に内蔵されていた 13 個のス�
 
 ******
 
-1. AutoJs6 6.8.0 (5935) 以降を使用します.
+1. AutoJs6 6.8.0 (ビルド 5935) 以降を使用します.
 2. AutoJs6 のプラグインセンターから Bundled Libraries をインストールし ([Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries/releases) から APK をダウンロードしても構いません), プラグインが有効になっていることを確認します.
 3. スクリプトでは従来どおり必要なライブラリを `require` するか, グローバルオブジェクトをそのまま使います. 例:
 
@@ -192,9 +192,9 @@ native library: none (all ABIs)
 
 #### v1.0.0
 
-_2026/10/24_
+_2026/10/29_
 
-- `ヒント` AutoJs6 6.8.0 (5935) 以降が必要です
+- `ヒント` AutoJs6 6.8.0 (ビルド 5935) 以降が必要です
 - `ヒント` AutoJs6 6.8.0 以降, 以下のライブラリは AutoJs6 に同梱されなくなります. このプラグインをインストールすれば require とグローバルオブジェクトは以前どおり使え, 既存のスクリプトを変更する必要はありません. プラグインが未インストールまたは無効のときは, これらのライブラリを require するとインストールまたは有効化の方法を示すエラーになります
 - `機能` axios, cheerio, dayjs, i18n (banana-i18n を含む), pangu, lodash を require で利用可能. axios, cheerio, dayjs, i18n, pangu はグローバルオブジェクトとしても利用可能
 - `機能` Node 互換シム buffer, events, fs, os, path, process, nodejs を require で利用可能

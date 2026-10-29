@@ -6,9 +6,9 @@
   "changelog_label_dependency": "Dependencia",
   "$data": {
     "v1.0.0": {
-      "released_date": "2026/10/24",
+      "released_date": "2026/10/29",
       "hint": [
-        "Requiere AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) o posterior",
+        "Requiere AutoJs6 {{ required_host_version_name }} (compilación {{ required_host_version_code }}) o posterior",
         "A partir de AutoJs6 {{ required_host_version_name }}, las bibliotecas siguientes ya no vienen con AutoJs6: con este plugin instalado, require y los objetos globales funcionan como antes y los scripts existentes no necesitan cambios; sin el plugin, o con él desactivado, require de estas bibliotecas da un error que indica cómo instalarlo o activarlo"
       ],
       "feature": [

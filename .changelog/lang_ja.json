@@ -6,9 +6,9 @@
   "changelog_label_dependency": "依存関係",
   "$data": {
     "v1.0.0": {
-      "released_date": "2026/10/24",
+      "released_date": "2026/10/29",
       "hint": [
-        "AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) 以降が必要です",
+        "AutoJs6 {{ required_host_version_name }} (ビルド {{ required_host_version_code }}) 以降が必要です",
         "AutoJs6 {{ required_host_version_name }} 以降, 以下のライブラリは AutoJs6 に同梱されなくなります. このプラグインをインストールすれば require とグローバルオブジェクトは以前どおり使え, 既存のスクリプトを変更する必要はありません. プラグインが未インストールまたは無効のときは, これらのライブラリを require するとインストールまたは有効化の方法を示すエラーになります"
       ],
       "feature": [

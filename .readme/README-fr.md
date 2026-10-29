@@ -80,7 +80,7 @@ Les noms de module sont les arguments de `require`; une bibliothèque qui a un o
 
 ******
 
-1. Utilisez AutoJs6 6.8.0 (5935) ou ultérieur.
+1. Utilisez AutoJs6 6.8.0 (build 5935) ou ultérieur.
 2. Installez Bundled Libraries depuis le Centre des plugins d'AutoJs6 (ou téléchargez l'APK depuis [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries/releases)) et vérifiez que le plugin est activé.
 3. Utilisez `require` pour les bibliothèques nécessaires comme d'habitude, ou directement les objets globaux, par exemple:
 
@@ -192,9 +192,9 @@ La liste de contrôle avant publication et les étapes de publication sont suivi
 
 #### v1.0.0
 
-_2026/10/24_
+_2026/10/29_
 
-- `Note` Nécessite AutoJs6 6.8.0 (5935) ou ultérieur
+- `Note` Nécessite AutoJs6 6.8.0 (build 5935) ou ultérieur
 - `Note` À partir d'AutoJs6 6.8.0, les bibliothèques ci-dessous ne sont plus fournies avec AutoJs6: avec ce plugin installé, require et les objets globaux fonctionnent comme avant et les scripts existants n'ont rien à changer; sans le plugin, ou s'il est désactivé, require de ces bibliothèques renvoie une erreur qui indique comment l'installer ou l'activer
 - `Fonctionnalité` axios, cheerio, dayjs, i18n (avec banana-i18n), pangu et lodash pour require, axios, cheerio, dayjs, i18n et pangu étant aussi disponibles comme objets globaux
 - `Fonctionnalité` Couches de compatibilité Node buffer, events, fs, os, path, process et nodejs pour require

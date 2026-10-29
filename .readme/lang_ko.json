@@ -18,7 +18,7 @@
   "th_license": "라이선스",
   "h3_usage": "사용 방법",
   "usage_steps": [
-    "AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) 이상을 사용합니다.",
+    "AutoJs6 {{ required_host_version_name }} (빌드 {{ required_host_version_code }}) 이상을 사용합니다.",
     "AutoJs6 의 플러그인 센터에서 Bundled Libraries 를 설치하고 ([Releases]({{ repo_url }}/releases) 에서 APK 를 내려받아 설치해도 됩니다), 플러그인이 활성화되어 있는지 확인합니다.",
     "스크립트에서 평소처럼 필요한 라이브러리를 `require` 하거나 전역 객체를 바로 사용합니다. 예:"
   ],

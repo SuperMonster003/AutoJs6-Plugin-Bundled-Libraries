@@ -6,9 +6,9 @@
 
 # v1.0.0
 
-###### 2026/10/24
+###### 2026/10/29
 
-* `提示` 需要 AutoJs6 6.8.0 (5935) 或更高版本
+* `提示` 需要 AutoJs6 6.8.0 (構建 5935) 或更高版本
 * `提示` 自 AutoJs6 6.8.0 起, 下列庫不再隨 AutoJs6 提供: 安裝本插件後 require 與全域物件照常可用, 原有腳本無需修改; 未安裝或停用本插件時, require 這些庫會得到說明如何安裝或開啟的錯誤
 * `新增` axios, cheerio, dayjs, i18n (含 banana-i18n), pangu 與 lodash, 可透過 require 使用, 其中 axios, cheerio, dayjs, i18n 與 pangu 也可直接作為全域物件使用
 * `新增` Node 相容墊片 buffer, events, fs, os, path, process 與 nodejs, 可透過 require 使用

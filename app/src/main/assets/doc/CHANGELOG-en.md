@@ -6,9 +6,9 @@
 
 # v1.0.0
 
-###### 2026/10/24
+###### 2026/10/29
 
-* `Hint` Requires AutoJs6 6.8.0 (5935) or later
+* `Hint` Requires AutoJs6 6.8.0 (build 5935) or later
 * `Hint` Starting with AutoJs6 6.8.0, the libraries below no longer come with AutoJs6: with this plugin installed, require and the global objects work as before and existing scripts need no change; without the plugin, or with it disabled, require of these libraries gives an error that says how to install or enable it
 * `Feature` axios, cheerio, dayjs, i18n (with banana-i18n), pangu and lodash for require, with axios, cheerio, dayjs, i18n and pangu also available as global objects
 * `Feature` Node compatibility shims buffer, events, fs, os, path, process and nodejs for require

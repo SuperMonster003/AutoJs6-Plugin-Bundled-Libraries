@@ -18,7 +18,7 @@
   "th_license": "License",
   "h3_usage": "Usage",
   "usage_steps": [
-    "Use AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) or later.",
+    "Use AutoJs6 {{ required_host_version_name }} (build {{ required_host_version_code }}) or later.",
     "Install Bundled Libraries from the Plugin Center of AutoJs6 (or download the APK from [Releases]({{ repo_url }}/releases)) and make sure the plugin is enabled.",
     "Use `require` for the libraries you need as usual, or use the global objects directly, for example:"
   ],

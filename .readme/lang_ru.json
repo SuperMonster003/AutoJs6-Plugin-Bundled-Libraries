@@ -18,7 +18,7 @@
   "th_license": "Лицензия",
   "h3_usage": "Использование",
   "usage_steps": [
-    "Используйте AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) или новее.",
+    "Используйте AutoJs6 {{ required_host_version_name }} (сборка {{ required_host_version_code }}) или новее.",
     "Установите Bundled Libraries из Центра плагинов AutoJs6 (или скачайте APK из [Releases]({{ repo_url }}/releases)) и убедитесь, что плагин включён.",
     "В скрипте, как обычно, подключайте нужные библиотеки через `require` или используйте глобальные объекты напрямую, например:"
   ],

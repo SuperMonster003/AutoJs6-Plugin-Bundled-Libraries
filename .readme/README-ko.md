@@ -80,7 +80,7 @@ Bundled Libraries 는 예전에 AutoJs6 에 내장되어 있던 13 개의 스크
 
 ******
 
-1. AutoJs6 6.8.0 (5935) 이상을 사용합니다.
+1. AutoJs6 6.8.0 (빌드 5935) 이상을 사용합니다.
 2. AutoJs6 의 플러그인 센터에서 Bundled Libraries 를 설치하고 ([Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries/releases) 에서 APK 를 내려받아 설치해도 됩니다), 플러그인이 활성화되어 있는지 확인합니다.
 3. 스크립트에서 평소처럼 필요한 라이브러리를 `require` 하거나 전역 객체를 바로 사용합니다. 예:
 
@@ -192,9 +192,9 @@ native library: none (all ABIs)
 
 #### v1.0.0
 
-_2026/10/24_
+_2026/10/29_
 
-- `힌트` AutoJs6 6.8.0 (5935) 이상이 필요합니다
+- `힌트` AutoJs6 6.8.0 (빌드 5935) 이상이 필요합니다
 - `힌트` AutoJs6 6.8.0 부터 아래 라이브러리는 AutoJs6 에 포함되지 않습니다. 이 플러그인을 설치하면 require 와 전역 객체를 예전처럼 사용할 수 있어 기존 스크립트를 수정할 필요가 없습니다. 플러그인이 없거나 비활성화되어 있으면 이 라이브러리를 require 할 때 설치 또는 활성화 방법을 알려 주는 오류가 발생합니다
 - `기능` axios, cheerio, dayjs, i18n (banana-i18n 포함), pangu, lodash 를 require 로 사용 가능, 그중 axios, cheerio, dayjs, i18n, pangu 는 전역 객체로도 사용 가능
 - `기능` Node 호환 심 buffer, events, fs, os, path, process, nodejs 를 require 로 사용 가능

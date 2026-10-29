@@ -6,9 +6,9 @@
   "changelog_label_dependency": "依赖",
   "$data": {
     "v1.0.0": {
-      "released_date": "2026/10/24",
+      "released_date": "2026/10/29",
       "hint": [
-        "需要 AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) 或更高版本",
+        "需要 AutoJs6 {{ required_host_version_name }} (构建 {{ required_host_version_code }}) 或更高版本",
         "自 AutoJs6 {{ required_host_version_name }} 起, 下列库不再随 AutoJs6 提供: 安装本插件后 require 与全局对象照常可用, 原有脚本无需修改; 未安装或停用本插件时, require 这些库会得到说明如何安装或开启的错误"
       ],
       "feature": [

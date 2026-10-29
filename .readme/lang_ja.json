@@ -18,7 +18,7 @@
   "th_license": "ライセンス",
   "h3_usage": "使用方法",
   "usage_steps": [
-    "AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) 以降を使用します.",
+    "AutoJs6 {{ required_host_version_name }} (ビルド {{ required_host_version_code }}) 以降を使用します.",
     "AutoJs6 のプラグインセンターから Bundled Libraries をインストールし ([Releases]({{ repo_url }}/releases) から APK をダウンロードしても構いません), プラグインが有効になっていることを確認します.",
     "スクリプトでは従来どおり必要なライブラリを `require` するか, グローバルオブジェクトをそのまま使います. 例:"
   ],

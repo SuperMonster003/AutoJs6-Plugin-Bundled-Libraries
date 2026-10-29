@@ -80,7 +80,7 @@
 
 ******
 
-1. استخدم AutoJs6 6.8.0 (5935) أو أحدث.
+1. استخدم AutoJs6 6.8.0 (البناء 5935) أو أحدث.
 2. ثبت Bundled Libraries من مركز الاضافات في AutoJs6 (أو نزل ملف APK من [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries/releases)) وتأكد من أن المكون مفعل.
 3. استخدم `require` للمكتبات التي تحتاجها كالمعتاد, أو استخدم الكائنات العامة مباشرة, مثلا:
 
@@ -192,9 +192,9 @@ native library: none (all ABIs)
 
 #### v1.0.0
 
-_2026/10/24_
+_2026/10/29_
 
-- `تلميح` يتطلب AutoJs6 6.8.0 (5935) أو أحدث
+- `تلميح` يتطلب AutoJs6 6.8.0 (البناء 5935) أو أحدث
 - `تلميح` بدءا من AutoJs6 6.8.0 لم تعد المكتبات التالية تأتي مع AutoJs6: بعد تثبيت هذا المكون يعمل require والكائنات العامة كما كانت ولا تحتاج السكربتات الحالية إلى تعديل; ومن دون المكون أو عند تعطيله يعطي require لهذه المكتبات خطأ يوضح كيفية تثبيته أو تفعيله
 - `ميزة` axios و cheerio و dayjs و i18n (مع banana-i18n) و pangu و lodash عبر require, وتتوفر axios و cheerio و dayjs و i18n و pangu أيضا ككائنات عامة
 - `ميزة` طبقات توافق Node وهي buffer و events و fs و os و path و process و nodejs عبر require

@@ -18,7 +18,7 @@
   "th_license": "授權",
   "h3_usage": "使用方法",
   "usage_steps": [
-    "使用 AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) 或更高版本.",
+    "使用 AutoJs6 {{ required_host_version_name }} (構建 {{ required_host_version_code }}) 或更高版本.",
     "在 AutoJs6 的插件中心安裝 Bundled Libraries (也可以從 [Releases]({{ repo_url }}/releases) 下載 APK 安裝), 並確認插件處於啟用狀態.",
     "在腳本中照常 `require` 需要的庫, 或直接使用全域物件, 例如:"
   ],

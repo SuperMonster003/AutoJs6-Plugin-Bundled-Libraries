@@ -6,9 +6,9 @@
   "changelog_label_dependency": "Зависимость",
   "$data": {
     "v1.0.0": {
-      "released_date": "2026/10/24",
+      "released_date": "2026/10/29",
       "hint": [
-        "Требуется AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) или новее",
+        "Требуется AutoJs6 {{ required_host_version_name }} (сборка {{ required_host_version_code }}) или новее",
         "Начиная с AutoJs6 {{ required_host_version_name }}, перечисленные ниже библиотеки больше не входят в AutoJs6: с установленным плагином require и глобальные объекты работают как раньше, и существующие скрипты менять не нужно; без плагина или при отключённом плагине require этих библиотек выдаёт ошибку с пояснением, как его установить или включить"
       ],
       "feature": [

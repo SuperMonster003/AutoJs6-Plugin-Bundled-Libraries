@@ -6,9 +6,9 @@
   "changelog_label_dependency": "의존성",
   "$data": {
     "v1.0.0": {
-      "released_date": "2026/10/24",
+      "released_date": "2026/10/29",
       "hint": [
-        "AutoJs6 {{ required_host_version_name }} ({{ required_host_version_code }}) 이상이 필요합니다",
+        "AutoJs6 {{ required_host_version_name }} (빌드 {{ required_host_version_code }}) 이상이 필요합니다",
         "AutoJs6 {{ required_host_version_name }} 부터 아래 라이브러리는 AutoJs6 에 포함되지 않습니다. 이 플러그인을 설치하면 require 와 전역 객체를 예전처럼 사용할 수 있어 기존 스크립트를 수정할 필요가 없습니다. 플러그인이 없거나 비활성화되어 있으면 이 라이브러리를 require 할 때 설치 또는 활성화 방법을 알려 주는 오류가 발생합니다"
       ],
       "feature": [
