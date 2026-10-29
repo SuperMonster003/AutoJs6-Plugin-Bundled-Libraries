@@ -177,6 +177,13 @@ androidComponents {
 dependencies {
     implementation(files("$rootDir/libs/common-plugin-api.aar"))
     testImplementation(libs.junit)
+
+    // The module tests run on the Rhino build that AutoJs6 runs the modules on: a copy of the host's
+    // libs/org-mozilla-rhino-2_0_0-SNAPSHOT.jar (Rhino-For-AutoJs6; no release of mozilla/rhino keeps a const in a loop
+    // body per iteration yet, which path.js relies on). Copy it again when AutoJs6 updates it.
+    // zh-CN: 模块测试运行在 AutoJs6 运行这些模块的 Rhino 构建上: 宿主 libs/org-mozilla-rhino-2_0_0-SNAPSHOT.jar 的副本
+    // (Rhino-For-AutoJs6; mozilla/rhino 的发布版尚未让循环体中的 const 每轮重新绑定, 而 path.js 依赖它). AutoJs6 更新它时重新复制.
+    testImplementation(files("$rootDir/libs/org-mozilla-rhino-2_0_0-SNAPSHOT.jar"))
 }
 
 tasks {
