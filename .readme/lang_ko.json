@@ -22,7 +22,7 @@
     "AutoJs6 의 플러그인 센터에서 Bundled Libraries 를 설치하고 ([Releases]({{ repo_url }}/releases) 에서 APK 를 내려받아 설치해도 됩니다), 플러그인이 활성화되어 있는지 확인합니다.",
     "스크립트에서 평소처럼 필요한 라이브러리를 `require` 하거나 전역 객체를 바로 사용합니다. 예:"
   ],
-  "p_usage_note": "패키지는 네이티브 라이브러리가 없는 범용 패키지 하나뿐이며, Android {{ min_android_version }} (API {{ android_min_sdk }}) 이상의 기기를 지원합니다.",
+  "p_usage_note": "패키지는 범용 패키지 하나뿐이며, Android {{ min_android_version }} (API {{ android_min_sdk }}) 이상의 기기를 지원합니다. 포함된 네이티브 라이브러리는 플러그인 페이지가 사용하는 `libandroidx.graphics.path.so` 뿐입니다 (4 개 ABI 에 하나씩).",
   "h3_switches": "라이브러리별 스위치",
   "p_switches_intro": "플러그인 페이지 (AutoJs6 플러그인 센터 또는 홈 화면의 Bundled Libraries 아이콘으로 엽니다) 에는 라이브러리마다 스위치가 있으며, 기본값은 모두 켜짐입니다",
   "switch_points": [

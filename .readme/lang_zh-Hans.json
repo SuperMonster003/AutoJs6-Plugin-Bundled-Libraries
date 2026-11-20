@@ -22,7 +22,7 @@
     "在 AutoJs6 的插件中心安装 Bundled Libraries (也可以从 [Releases]({{ repo_url }}/releases) 下载 APK 安装), 并确认插件处于启用状态.",
     "在脚本中照常 `require` 需要的库, 或直接使用全局对象, 例如:"
   ],
-  "p_usage_note": "插件只有一个通用安装包, 不含原生库, 支持 Android {{ min_android_version }} (API {{ android_min_sdk }}) 及以上的设备.",
+  "p_usage_note": "插件只有一个通用安装包, 其中的原生库只有插件页面使用的 `libandroidx.graphics.path.so` (4 个 ABI 各一份), 支持 Android {{ min_android_version }} (API {{ android_min_sdk }}) 及以上的设备.",
   "h3_switches": "逐库开关",
   "p_switches_intro": "插件页面 (从 AutoJs6 插件中心或桌面上的 Bundled Libraries 图标打开) 为每个库提供一个开关, 默认全部开启",
   "switch_points": [

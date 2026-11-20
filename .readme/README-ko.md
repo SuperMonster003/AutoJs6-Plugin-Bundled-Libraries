@@ -94,7 +94,7 @@ console.log(_.map([1, 2], function (x) { return x * 2; }).join());
 console.log(path.isAbsolute('/sdcard/Scripts'));
 ```
 
-> 패키지는 네이티브 라이브러리가 없는 범용 패키지 하나뿐이며, Android 7.0 (API 24) 이상의 기기를 지원합니다.
+> 패키지는 범용 패키지 하나뿐이며, Android 7.0 (API 24) 이상의 기기를 지원합니다. 포함된 네이티브 라이브러리는 플러그인 페이지가 사용하는 `libandroidx.graphics.path.so` 뿐입니다 (4 개 ABI 에 하나씩).
 
 ******
 
@@ -171,7 +171,7 @@ catalog: meta-data org.autojs.plugin.scriptModules.CATALOG -> assets/script-modu
 library switch: activity-alias .library.<id>, action org.autojs.plugin.SCRIPT_MODULE_LIBRARY
 wake action: org.autojs.plugin.action.WAKE
 minimum host build: 5935
-native library: none (all ABIs)
+native library: libandroidx.graphics.path.so (Jetpack Compose, armeabi-v7a / arm64-v8a / x86 / x86_64, stored, 16 KB aligned)
 ```
 
 ******

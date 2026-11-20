@@ -117,7 +117,7 @@ catalog: meta-data {{ catalog_meta_data }} -> assets/{{ catalog_asset }} (schema
 library switch: activity-alias .library.<id>, action {{ library_action }}
 wake action: {{ wake_action }}
 minimum host build: {{ required_host_version_code }}
-native library: none (all ABIs)
+native library: libandroidx.graphics.path.so (Jetpack Compose, armeabi-v7a / arm64-v8a / x86 / x86_64, stored, 16 KB aligned)
 ```
 
 ******

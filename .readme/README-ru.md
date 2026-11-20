@@ -94,7 +94,7 @@ console.log(_.map([1, 2], function (x) { return x * 2; }).join());
 console.log(path.isAbsolute('/sdcard/Scripts'));
 ```
 
-> Есть только один универсальный пакет без нативных библиотек для устройств с Android 7.0 (API 24) или новее.
+> Есть только один универсальный пакет для устройств с Android 7.0 (API 24) или новее; единственная нативная библиотека в нём - `libandroidx.graphics.path.so` для страниц плагина (по одной копии для каждого из 4 ABI).
 
 ******
 
@@ -171,7 +171,7 @@ catalog: meta-data org.autojs.plugin.scriptModules.CATALOG -> assets/script-modu
 library switch: activity-alias .library.<id>, action org.autojs.plugin.SCRIPT_MODULE_LIBRARY
 wake action: org.autojs.plugin.action.WAKE
 minimum host build: 5935
-native library: none (all ABIs)
+native library: libandroidx.graphics.path.so (Jetpack Compose, armeabi-v7a / arm64-v8a / x86 / x86_64, stored, 16 KB aligned)
 ```
 
 ******

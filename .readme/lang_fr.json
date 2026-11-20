@@ -22,7 +22,7 @@
     "Installez Bundled Libraries depuis le Centre des plugins d'AutoJs6 (ou téléchargez l'APK depuis [Releases]({{ repo_url }}/releases)) et vérifiez que le plugin est activé.",
     "Utilisez `require` pour les bibliothèques nécessaires comme d'habitude, ou directement les objets globaux, par exemple:"
   ],
-  "p_usage_note": "Il n'existe qu'un seul paquet universel, sans bibliothèque native, pour les appareils sous Android {{ min_android_version }} (API {{ android_min_sdk }}) ou ultérieur.",
+  "p_usage_note": "Il n'existe qu'un seul paquet universel, pour les appareils sous Android {{ min_android_version }} (API {{ android_min_sdk }}) ou ultérieur; sa seule bibliothèque native est `libandroidx.graphics.path.so`, utilisée par les pages du plugin (une copie pour chacune des 4 ABI).",
   "h3_switches": "Activation par bibliothèque",
   "p_switches_intro": "La page du plugin (ouverte depuis le Centre des plugins d'AutoJs6 ou l'icône Bundled Libraries de l'écran d'accueil) propose un interrupteur par bibliothèque, tous activés par défaut",
   "switch_points": [

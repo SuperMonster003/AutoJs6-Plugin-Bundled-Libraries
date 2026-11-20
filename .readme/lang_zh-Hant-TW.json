@@ -22,7 +22,7 @@
     "在 AutoJs6 的外掛中心安裝 Bundled Libraries (也可以從 [Releases]({{ repo_url }}/releases) 下載 APK 安裝), 並確認外掛處於啟用狀態.",
     "在腳本中照常 `require` 需要的函式庫, 或直接使用全域物件, 例如:"
   ],
-  "p_usage_note": "外掛只有一個通用安裝套件, 不含原生函式庫, 支援 Android {{ min_android_version }} (API {{ android_min_sdk }}) 以上的裝置.",
+  "p_usage_note": "外掛只有一個通用安裝套件, 其中的原生函式庫只有外掛頁面使用的 `libandroidx.graphics.path.so` (4 個 ABI 各一份), 支援 Android {{ min_android_version }} (API {{ android_min_sdk }}) 以上的裝置.",
   "h3_switches": "逐一開關函式庫",
   "p_switches_intro": "外掛頁面 (從 AutoJs6 外掛中心或桌面上的 Bundled Libraries 圖示開啟) 為每個函式庫提供一個開關, 預設全部開啟",
   "switch_points": [

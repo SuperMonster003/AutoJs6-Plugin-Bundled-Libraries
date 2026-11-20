@@ -94,7 +94,7 @@ console.log(_.map([1, 2], function (x) { return x * 2; }).join());
 console.log(path.isAbsolute('/sdcard/Scripts'));
 ```
 
-> 插件只有一个通用安装包, 不含原生库, 支持 Android 7.0 (API 24) 及以上的设备.
+> 插件只有一个通用安装包, 其中的原生库只有插件页面使用的 `libandroidx.graphics.path.so` (4 个 ABI 各一份), 支持 Android 7.0 (API 24) 及以上的设备.
 
 ******
 
@@ -171,7 +171,7 @@ catalog: meta-data org.autojs.plugin.scriptModules.CATALOG -> assets/script-modu
 library switch: activity-alias .library.<id>, action org.autojs.plugin.SCRIPT_MODULE_LIBRARY
 wake action: org.autojs.plugin.action.WAKE
 minimum host build: 5935
-native library: none (all ABIs)
+native library: libandroidx.graphics.path.so (Jetpack Compose, armeabi-v7a / arm64-v8a / x86 / x86_64, stored, 16 KB aligned)
 ```
 
 ******

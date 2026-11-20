@@ -94,7 +94,7 @@ console.log(_.map([1, 2], function (x) { return x * 2; }).join());
 console.log(path.isAbsolute('/sdcard/Scripts'));
 ```
 
-> Hay un único paquete universal, sin bibliotecas nativas, para dispositivos con Android 7.0 (API 24) o posterior.
+> Hay un único paquete universal, para dispositivos con Android 7.0 (API 24) o posterior; su única biblioteca nativa es `libandroidx.graphics.path.so`, que usan las páginas del plugin (una copia para cada una de las 4 ABI).
 
 ******
 
@@ -171,7 +171,7 @@ catalog: meta-data org.autojs.plugin.scriptModules.CATALOG -> assets/script-modu
 library switch: activity-alias .library.<id>, action org.autojs.plugin.SCRIPT_MODULE_LIBRARY
 wake action: org.autojs.plugin.action.WAKE
 minimum host build: 5935
-native library: none (all ABIs)
+native library: libandroidx.graphics.path.so (Jetpack Compose, armeabi-v7a / arm64-v8a / x86 / x86_64, stored, 16 KB aligned)
 ```
 
 ******
