@@ -1,19 +1,45 @@
-{{ p_introduction_what }}
+{{ instruction_p_what }}
 
-{{ p_introduction_how }}
+### {{ instruction_h3_start }}
 
-{{ placeholder_libraries }}
+{{ placeholder_instruction_start_steps }}
 
-### {{ h3_switches }}
+### {{ instruction_h3_features }}
 
-{{ p_switches_intro }}:
+{{ placeholder_instruction_features }}
 
-{{ placeholder_switch_points }}
+### {{ instruction_h3_script }}
 
-### {{ h3_unavailable }}
+{{ instruction_p_script }}
 
-{{ p_unavailable_intro }}:
+```js
+var _ = require('lodash');
+var path = require('path');
 
-{{ placeholder_unavailable_points }}
+console.log(dayjs(0).valueOf());
+console.log(cheerio.load('<p>AutoJs6</p>')('p').text());
+console.log(_.map([1, 2], function (x) { return x * 2; }).join());
+console.log(path.isAbsolute('/sdcard/Scripts'));
+```
 
-{{ p_instruction_more }}
+{{ instruction_p_script_unavailable }}
+
+```js
+try {
+    var axios = require('axios');
+} catch (e) {
+    console.log(e.code, e.library, e.reason);
+}
+```
+
+{{ placeholder_instruction_script_notes }}
+
+### {{ instruction_h3_requirements }}
+
+{{ placeholder_instruction_requirements }}
+
+### {{ instruction_h3_faq }}
+
+{{ placeholder_instruction_faq }}
+
+{{ instruction_p_more }}

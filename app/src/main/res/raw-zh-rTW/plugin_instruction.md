@@ -1,45 +1,59 @@
-Bundled Libraries 收納了 AutoJs6 過去內建的 13 個腳本函式庫: axios, cheerio, dayjs, i18n, pangu, lodash, 以及 Node 相容墊片 buffer, events, fs, os, path, process 和 nodejs. 自 AutoJs6 6.8.0 起, 這些函式庫不再隨 AutoJs6 安裝套件提供; 安裝並啟用本外掛後, 腳本中的 `require('axios')`, `require('fs')` 等, 以及全域物件 `axios`, `cheerio`, `dayjs`, `i18n`, `pangu` 照常可用, 寫法與以前相同.
+Bundled Libraries 為 AutoJs6 腳本提供 13 個函式庫: axios, dayjs 等 JavaScript 函式庫, 以及 fs, path 等 Node 相容墊片. 啟用後 `require('axios')` 與 `dayjs` 等全域物件照常可用, 現有腳本無需修改.
 
-外掛本身只是一個資源套件: AutoJs6 直接從外掛的安裝套件讀取函式庫檔案, 腳本執行時不會啟動外掛行程, 外掛也不需要儲存空間, 網路等權限 (axios 的網路請求由執行腳本的 AutoJs6 發出). 用不到的函式庫可以在外掛頁面逐一關閉.
+### 開始使用
 
-#### 函式庫
+1. 確認 AutoJs6 外掛中心裡本外掛已啟用.
+2. 在腳本中用 `require` 載入函式庫, 或直接使用全域物件 `axios`, `cheerio`, `dayjs`, `i18n` 與 `pangu`, 範例見下文.
+3. 用不到的函式庫可以在外掛頁面關閉; 外掛頁面從外掛中心或桌面上的 Bundled Libraries 圖示開啟.
 
-| 函式庫 | 模組名稱 | 全域物件 | 版本 | 授權 |
-|---|---|---|---|---|
-| axios | `axios` | `axios` | - | MIT |
-| cheerio | `cheerio` | `cheerio` | - | MIT |
-| dayjs | `dayjs` | `dayjs` | - | MIT |
-| i18n | `i18n`, `banana-i18n` | `i18n` | - | MIT |
-| pangu | `pangu` | `pangu` | 10.1.0 | MIT |
-| lodash | `lodash` | - | 4.17.15 | MIT |
+### 主要功能
 
-#### Node 相容墊片
+- **函式庫**: axios, cheerio, dayjs, i18n, lodash 與 pangu; 除 lodash 外都可以直接當作全域物件使用.
+- **Node 相容墊片**: buffer, events, fs, os, path, process 與 nodejs, 用 `require` 載入.
+- **逐一開關函式庫**: 外掛頁面為每個函式庫提供一個開關, 預設全部開啟; 關閉的函式庫無法被 `require`, 它的全域物件也無法使用.
 
-| 函式庫 | 模組名稱 | 全域物件 | 版本 | 授權 |
-|---|---|---|---|---|
-| buffer | `buffer` | - | - | MPL-2.0 |
-| events | `events` | - | - | MPL-2.0 |
-| fs | `fs` | - | - | MPL-2.0 |
-| os | `os` | - | - | MPL-2.0 |
-| path | `path` | - | - | MPL-2.0 |
-| process | `process` | - | - | MPL-2.0 |
-| nodejs | `nodejs` | - | - | MPL-2.0 |
+### 在指令碼中使用
 
-### 逐一開關函式庫
+下面的範例用 `require` 載入 lodash 與 path, 並直接使用全域物件 dayjs 與 cheerio:
 
-外掛頁面 (從 AutoJs6 外掛中心或桌面上的 Bundled Libraries 圖示開啟) 為每個函式庫提供一個開關, 預設全部開啟:
+```js
+var _ = require('lodash');
+var path = require('path');
 
-- 關閉的函式庫不能再被 `require`, 它的全域物件也不能使用; 重新開啟即可恢復.
-- 開關對之後的 `require` 生效: 正在執行的腳本已經載入的模組會保留到腳本結束.
-- `fs` 相依於 `buffer`, `nodejs` 相依於 `process` 與 `buffer`: 關閉 `buffer` 或 `process` 後, 相依於它們的模組也無法載入.
-- 頁面底部的 "發行記錄" 列出各版本的更新內容.
+console.log(dayjs(0).valueOf());
+console.log(cheerio.load('<p>AutoJs6</p>')('p').text());
+console.log(_.map([1, 2], function (x) { return x * 2; }).join());
+console.log(path.isAbsolute('/sdcard/Scripts'));
+```
 
-### 外掛無法使用時
+外掛無法使用或函式庫被關閉時, `require` 會擲出錯誤, 可以這樣處理:
 
-外掛未安裝, 未授權, 在外掛中心被停用, 版本不相容, 或某個函式庫被關閉時, `require` 該函式庫或讀取它的全域物件都會擲出錯誤:
+```js
+try {
+    var axios = require('axios');
+} catch (e) {
+    console.log(e.code, e.library, e.reason);
+}
+```
 
-- 錯誤是 `code` 為 `MODULE_NOT_FOUND` 的 `Error`, 訊息會說明需要安裝外掛還是到哪裡開啟, 腳本可以用 `try...catch` 處理.
-- 錯誤物件還帶有 `library` (函式庫名稱) 與 `reason` (原因: `not-installed`, `unauthorized`, `plugin-disabled`, `library-disabled` 或 `incompatible`).
-- 外掛狀態的變化不會中斷正在執行的腳本, 只影響之後的 `require`; AutoJs6 的其他內建模組與腳本自己的檔案不受影響.
+- 錯誤的 `code` 為 `MODULE_NOT_FOUND`, `library` 為函式庫名稱, `reason` 為原因, 例如 `library-disabled` 表示函式庫被關閉.
+- 開關只影響之後的 `require`, 已經載入的模組不受影響.
+- `fs` 依賴 `buffer`, `nodejs` 依賴 `process` 與 `buffer`; 關閉被依賴的函式庫後, 依賴它的模組也無法載入.
+- 本外掛服務於 AutoJs6 預設的 JavaScript 腳本; Node.js 執行環境外掛中的腳本使用 Node.js 內建的模組.
 
-原始碼, 發行歷史與第三方授權見 [專案首頁](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries).
+### 執行需求
+
+- Android 7.0 或更新版本, AutoJs6 6.8.0 或更新版本.
+- 本外掛只是資源套件, 不需要任何權限; axios 的網路請求由執行腳本的 AutoJs6 發出.
+
+### 常見問題
+
+**腳本提示需要本外掛時的處理**
+
+從 AutoJs6 6.8.0 起, 這些函式庫不再隨 AutoJs6 安裝套件提供. 安裝並在外掛中心啟用本外掛, 並確認外掛頁面中對應函式庫的開關已開啟.
+
+**現有腳本的寫法**
+
+無需改寫. `axios` 等全域物件與 `require('axios')` 等寫法都照常可用, 函式庫從本外掛載入.
+
+各函式庫的版本, 模組名稱與授權見 [專案首頁](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries).

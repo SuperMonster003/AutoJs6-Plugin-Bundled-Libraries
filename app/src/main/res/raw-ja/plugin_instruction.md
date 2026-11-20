@@ -1,45 +1,59 @@
-Bundled Libraries は, かつて AutoJs6 に内蔵されていた 13 個のスクリプトライブラリ (axios, cheerio, dayjs, i18n, pangu, lodash) と Node 互換シム (buffer, events, fs, os, path, process, nodejs) を収録しています. AutoJs6 6.8.0 以降, これらは AutoJs6 のパッケージに含まれません. このプラグインをインストールして有効にすれば, `require('axios')` や `require('fs')` など, およびグローバルオブジェクト `axios`, `cheerio`, `dayjs`, `i18n`, `pangu` が以前とまったく同じ書き方で使えます.
+Bundled Libraries は AutoJs6 のスクリプトに 13 個のライブラリを提供します: axios, cheerio, dayjs などの JavaScript ライブラリと, fs, path などの Node 互換シムです. 有効にすると `require('axios')` などの書き方と `dayjs` などのグローバルオブジェクトがこれまでどおり使え, 既存のスクリプトを変更する必要はありません.
 
-プラグイン自体はリソースパッケージにすぎません. AutoJs6 はプラグインのパッケージからライブラリファイルを直接読み込み, スクリプトの実行時にプラグインのプロセスが起動することはありません. プラグインはストレージやネットワークなどの権限も必要としません (axios のネットワーク要求はスクリプトを実行する AutoJs6 が送信します). 不要なライブラリはプラグインのページで個別にオフにできます.
+### はじめに
 
-#### ライブラリ
+1. AutoJs6 のプラグインセンターでこのプラグインが有効になっていることを確認します.
+2. スクリプトで `require` を使ってライブラリを読み込むか, グローバルオブジェクト `axios`, `cheerio`, `dayjs`, `i18n`, `pangu` を直接使います. 例は下記を参照してください.
+3. 使わないライブラリはプラグインのページでオフにできます. このページはプラグインセンター, またはホーム画面の Bundled Libraries アイコンから開きます.
 
-| ライブラリ | モジュール名 | グローバルオブジェクト | バージョン | ライセンス |
-|---|---|---|---|---|
-| axios | `axios` | `axios` | - | MIT |
-| cheerio | `cheerio` | `cheerio` | - | MIT |
-| dayjs | `dayjs` | `dayjs` | - | MIT |
-| i18n | `i18n`, `banana-i18n` | `i18n` | - | MIT |
-| pangu | `pangu` | `pangu` | 10.1.0 | MIT |
-| lodash | `lodash` | - | 4.17.15 | MIT |
+### 主な機能
 
-#### Node 互換シム
+- **ライブラリ**: axios, cheerio, dayjs, i18n, lodash, pangu. lodash 以外はグローバルオブジェクトとして直接使うこともできます.
+- **Node 互換シム**: buffer, events, fs, os, path, process, nodejs. `require` で読み込みます.
+- **ライブラリごとのスイッチ**: プラグインのページにライブラリごとのスイッチがあり, 既定ではすべてオンです. オフにしたライブラリは `require` できず, そのグローバルオブジェクトも使えません.
 
-| ライブラリ | モジュール名 | グローバルオブジェクト | バージョン | ライセンス |
-|---|---|---|---|---|
-| buffer | `buffer` | - | - | MPL-2.0 |
-| events | `events` | - | - | MPL-2.0 |
-| fs | `fs` | - | - | MPL-2.0 |
-| os | `os` | - | - | MPL-2.0 |
-| path | `path` | - | - | MPL-2.0 |
-| process | `process` | - | - | MPL-2.0 |
-| nodejs | `nodejs` | - | - | MPL-2.0 |
+### スクリプトでの使い方
 
-### ライブラリごとのスイッチ
+次の例では `require` で lodash と path を読み込み, グローバルオブジェクト dayjs と cheerio を直接使います:
 
-プラグインのページ (AutoJs6 のプラグインセンター, またはホーム画面の Bundled Libraries アイコンから開きます) にはライブラリごとのスイッチがあり, 既定ではすべてオンです:
+```js
+var _ = require('lodash');
+var path = require('path');
 
-- オフにしたライブラリは `require` できなくなり, グローバルオブジェクトも使えません. オンに戻せば元どおり使えます.
-- スイッチはそれ以降の `require` に適用されます. 実行中のスクリプトが読み込み済みのモジュールはスクリプト終了まで残ります.
-- `fs` は `buffer` を, `nodejs` は `process` と `buffer` を必要とします. `buffer` または `process` をオフにすると, それに依存するモジュールも読み込めません.
-- ページ下部の "リリース履歴" で各バージョンの変更内容を確認できます.
+console.log(dayjs(0).valueOf());
+console.log(cheerio.load('<p>AutoJs6</p>')('p').text());
+console.log(_.map([1, 2], function (x) { return x * 2; }).join());
+console.log(path.isAbsolute('/sdcard/Scripts'));
+```
 
-### プラグインを使えないとき
+プラグインが使えないときやライブラリがオフのとき, `require` はエラーをスローします. 次のように処理できます:
 
-プラグインが未インストール, 未承認, プラグインセンターで無効, 互換性なし, またはライブラリがオフのとき, そのライブラリの `require` やグローバルオブジェクトの読み取りはエラーをスローします:
+```js
+try {
+    var axios = require('axios');
+} catch (e) {
+    console.log(e.code, e.library, e.reason);
+}
+```
 
-- エラーは `code` が `MODULE_NOT_FOUND` の `Error` で, メッセージはプラグインのインストールが必要か, どこでオンにするかを示します. スクリプトは `try...catch` で処理できます.
-- エラーオブジェクトには `library` (ライブラリ名) と `reason` (`not-installed`, `unauthorized`, `plugin-disabled`, `library-disabled`, `incompatible` のいずれか) もあります.
-- プラグインの状態が変わっても実行中のスクリプトは中断されず, 以降の `require` だけが影響を受けます. AutoJs6 のほかの内蔵モジュールやスクリプト自身のファイルには影響しません.
+- エラーの `code` は `MODULE_NOT_FOUND` で, `library` にライブラリ名, `reason` に原因が入ります. 例えばライブラリがオフのときは `library-disabled` です.
+- スイッチが影響するのはその後の `require` だけで, 読み込み済みのモジュールには影響しません.
+- `fs` は `buffer` に, `nodejs` は `process` と `buffer` に依存します. 依存先のライブラリをオフにすると, それに依存するモジュールも読み込めません.
+- このプラグインは AutoJs6 の既定の JavaScript スクリプト向けです. Node.js ランタイムプラグインのスクリプトは Node.js 組み込みのモジュールを使います.
 
-ソースコード, リリース履歴, サードパーティのライセンスは [プロジェクトページ](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries) にあります.
+### 動作要件
+
+- Android 7.0 以降, AutoJs6 6.8.0 以降.
+- このプラグインはリソースパッケージにすぎず, 権限は必要ありません. axios のネットワークリクエストはスクリプトを実行する AutoJs6 が送信します.
+
+### よくある質問
+
+**スクリプトがこのプラグインを必要とすると表示する場合**
+
+AutoJs6 6.8.0 以降, これらのライブラリは AutoJs6 のパッケージに含まれません. このプラグインをインストールしてプラグインセンターで有効にし, プラグインのページで該当ライブラリのスイッチがオンになっていることを確認してください.
+
+**既存のスクリプト**
+
+変更は不要です. `axios` などのグローバルオブジェクトも `require('axios')` などの呼び出しもそのまま使え, ライブラリはこのプラグインから読み込まれます.
+
+各ライブラリのバージョン, モジュール名, ライセンスは [プロジェクトページ](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries) を参照してください.

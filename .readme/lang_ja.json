@@ -78,5 +78,43 @@
   "h3_links": "関連リンク",
   "text_link_autojs6": "AutoJs6 プロジェクト",
   "text_link_notices": "サードパーティ通知",
-  "p_instruction_more": "ソースコード, リリース履歴, サードパーティのライセンスは [プロジェクトページ]({{ repo_url }}) にあります."
+  "instruction_p_what": "Bundled Libraries は AutoJs6 のスクリプトに {{ library_count }} 個のライブラリを提供します: axios, cheerio, dayjs などの JavaScript ライブラリと, fs, path などの Node 互換シムです. 有効にすると `require('axios')` などの書き方と `dayjs` などのグローバルオブジェクトがこれまでどおり使え, 既存のスクリプトを変更する必要はありません.",
+  "instruction_h3_start": "はじめに",
+  "instruction_start_steps": [
+    "AutoJs6 のプラグインセンターでこのプラグインが有効になっていることを確認します.",
+    "スクリプトで `require` を使ってライブラリを読み込むか, グローバルオブジェクト `axios`, `cheerio`, `dayjs`, `i18n`, `pangu` を直接使います. 例は下記を参照してください.",
+    "使わないライブラリはプラグインのページでオフにできます. このページはプラグインセンター, またはホーム画面の Bundled Libraries アイコンから開きます."
+  ],
+  "instruction_h3_features": "主な機能",
+  "instruction_features": [
+    "**ライブラリ**: axios, cheerio, dayjs, i18n, lodash, pangu. lodash 以外はグローバルオブジェクトとして直接使うこともできます.",
+    "**Node 互換シム**: buffer, events, fs, os, path, process, nodejs. `require` で読み込みます.",
+    "**ライブラリごとのスイッチ**: プラグインのページにライブラリごとのスイッチがあり, 既定ではすべてオンです. オフにしたライブラリは `require` できず, そのグローバルオブジェクトも使えません."
+  ],
+  "instruction_h3_script": "スクリプトでの使い方",
+  "instruction_p_script": "次の例では `require` で lodash と path を読み込み, グローバルオブジェクト dayjs と cheerio を直接使います:",
+  "instruction_p_script_unavailable": "プラグインが使えないときやライブラリがオフのとき, `require` はエラーをスローします. 次のように処理できます:",
+  "instruction_script_notes": [
+    "エラーの `code` は `MODULE_NOT_FOUND` で, `library` にライブラリ名, `reason` に原因が入ります. 例えばライブラリがオフのときは `library-disabled` です.",
+    "スイッチが影響するのはその後の `require` だけで, 読み込み済みのモジュールには影響しません.",
+    "`fs` は `buffer` に, `nodejs` は `process` と `buffer` に依存します. 依存先のライブラリをオフにすると, それに依存するモジュールも読み込めません.",
+    "このプラグインは AutoJs6 の既定の JavaScript スクリプト向けです. Node.js ランタイムプラグインのスクリプトは Node.js 組み込みのモジュールを使います."
+  ],
+  "instruction_h3_requirements": "動作要件",
+  "instruction_requirements": [
+    "Android {{ min_android_version }} 以降, AutoJs6 {{ required_host_version_name }} 以降.",
+    "このプラグインはリソースパッケージにすぎず, 権限は必要ありません. axios のネットワークリクエストはスクリプトを実行する AutoJs6 が送信します."
+  ],
+  "instruction_h3_faq": "よくある質問",
+  "instruction_faq": [
+    {
+      "q": "スクリプトがこのプラグインを必要とすると表示する場合",
+      "a": "AutoJs6 {{ required_host_version_name }} 以降, これらのライブラリは AutoJs6 のパッケージに含まれません. このプラグインをインストールしてプラグインセンターで有効にし, プラグインのページで該当ライブラリのスイッチがオンになっていることを確認してください."
+    },
+    {
+      "q": "既存のスクリプト",
+      "a": "変更は不要です. `axios` などのグローバルオブジェクトも `require('axios')` などの呼び出しもそのまま使え, ライブラリはこのプラグインから読み込まれます."
+    }
+  ],
+  "instruction_p_more": "各ライブラリのバージョン, モジュール名, ライセンスは [プロジェクトページ]({{ repo_url }}) を参照してください."
 }

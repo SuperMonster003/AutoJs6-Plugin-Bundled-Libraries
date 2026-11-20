@@ -1,45 +1,59 @@
-Bundled Libraries holds the 13 script libraries that used to be built into AutoJs6: axios, cheerio, dayjs, i18n, pangu and lodash, plus the Node compatibility shims buffer, events, fs, os, path, process and nodejs. Starting with AutoJs6 6.8.0, the AutoJs6 package no longer includes them; with this plugin installed and enabled, `require('axios')`, `require('fs')` and the like, as well as the global objects `axios`, `cheerio`, `dayjs`, `i18n` and `pangu`, keep working exactly as before.
+Bundled Libraries provides 13 libraries for AutoJs6 scripts: JavaScript libraries such as axios, cheerio and dayjs, plus Node compatibility shims such as fs and path. Once it is enabled, `require('axios')` and the like, as well as global objects such as `dayjs`, work as usual, so existing scripts need no changes.
 
-The plugin is only a resource package: AutoJs6 reads the library files straight from the plugin package, scripts never start the plugin process, and the plugin needs no storage, network or other permission (the network requests of axios are made by AutoJs6, which runs the script). Libraries you do not need can be switched off one by one on the plugin page.
+### Getting started
 
-#### Libraries
+1. Make sure this plugin is enabled in the Plugin Center of AutoJs6.
+2. In a script, load a library with `require`, or use the global objects `axios`, `cheerio`, `dayjs`, `i18n` and `pangu` directly; see the examples below.
+3. Libraries you do not need can be switched off on the plugin page, which opens from the Plugin Center or the Bundled Libraries icon on the home screen.
 
-| Library | Modules | Global object | Version | License |
-|---|---|---|---|---|
-| axios | `axios` | `axios` | - | MIT |
-| cheerio | `cheerio` | `cheerio` | - | MIT |
-| dayjs | `dayjs` | `dayjs` | - | MIT |
-| i18n | `i18n`, `banana-i18n` | `i18n` | - | MIT |
-| pangu | `pangu` | `pangu` | 10.1.0 | MIT |
-| lodash | `lodash` | - | 4.17.15 | MIT |
+### Main features
 
-#### Node compatibility shims
+- **Libraries**: axios, cheerio, dayjs, i18n, lodash and pangu; all except lodash can also be used directly as global objects.
+- **Node compatibility shims**: buffer, events, fs, os, path, process and nodejs, loaded with `require`.
+- **Per-library switches**: the plugin page has one switch per library, all on by default; a library that is switched off cannot be loaded with `require`, and its global object cannot be used either.
 
-| Library | Modules | Global object | Version | License |
-|---|---|---|---|---|
-| buffer | `buffer` | - | - | MPL-2.0 |
-| events | `events` | - | - | MPL-2.0 |
-| fs | `fs` | - | - | MPL-2.0 |
-| os | `os` | - | - | MPL-2.0 |
-| path | `path` | - | - | MPL-2.0 |
-| process | `process` | - | - | MPL-2.0 |
-| nodejs | `nodejs` | - | - | MPL-2.0 |
+### Using it in scripts
 
-### Per-library switches
+The example below loads lodash and path with `require` and uses the global objects dayjs and cheerio directly:
 
-The plugin page (opened from the Plugin Center of AutoJs6 or the Bundled Libraries icon on the home screen) has one switch per library, all on by default:
+```js
+var _ = require('lodash');
+var path = require('path');
 
-- A library that is switched off can no longer be required and its global object cannot be used; switch it on again to restore it.
-- A switch applies to the next `require`: modules that a running script has already loaded stay until the script ends.
-- `fs` needs `buffer`, and `nodejs` needs `process` and `buffer`: with `buffer` or `process` switched off, the modules that need them cannot load either.
-- "Release history" at the bottom of the page lists the changes of each version.
+console.log(dayjs(0).valueOf());
+console.log(cheerio.load('<p>AutoJs6</p>')('p').text());
+console.log(_.map([1, 2], function (x) { return x * 2; }).join());
+console.log(path.isAbsolute('/sdcard/Scripts'));
+```
 
-### When the plugin is unavailable
+When the plugin is unavailable or a library is switched off, `require` throws an error, which you can handle like this:
 
-When the plugin is not installed, not authorized, disabled in the Plugin Center or incompatible, or a library is switched off, `require` of that library and reading its global object throw an error:
+```js
+try {
+    var axios = require('axios');
+} catch (e) {
+    console.log(e.code, e.library, e.reason);
+}
+```
 
-- The error is an `Error` with `code` `MODULE_NOT_FOUND`; its message says whether to install the plugin or where to switch it on, and scripts can handle it with `try...catch`.
-- The error object also has `library` (the library name) and `reason` (`not-installed`, `unauthorized`, `plugin-disabled`, `library-disabled` or `incompatible`).
-- A change of the plugin state never interrupts a running script, it only affects later `require` calls; the other built-in modules of AutoJs6 and the script's own files are not affected.
+- The error has `code` set to `MODULE_NOT_FOUND`, the library name in `library` and the cause in `reason`, for example `library-disabled` when the library is switched off.
+- A switch only affects later `require` calls; modules that are already loaded are not affected.
+- `fs` depends on `buffer`, and `nodejs` depends on `process` and `buffer`; when a library they depend on is switched off, they cannot be loaded either.
+- This plugin serves the default JavaScript scripts of AutoJs6; scripts in the Node.js runtime plugin use the modules built into Node.js.
 
-Source code, release history and third-party licenses are on the [project page](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries).
+### Requirements
+
+- Android 7.0 or later, and AutoJs6 6.8.0 or later.
+- This plugin is only a resource package and needs no permissions; network requests made with axios are sent by AutoJs6, which runs the script.
+
+### FAQ
+
+**A script says this plugin is required**
+
+Starting with AutoJs6 6.8.0, the AutoJs6 package no longer includes these libraries. Install this plugin, enable it in the Plugin Center, and check that the switch of the library is on in the plugin page.
+
+**Existing scripts**
+
+No changes are needed. Global objects such as `axios` and calls such as `require('axios')` keep working, and the libraries are loaded from this plugin.
+
+The version, module names and license of each library are on the [project page](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries).

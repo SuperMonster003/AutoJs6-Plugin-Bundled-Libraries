@@ -78,5 +78,43 @@
   "h3_links": "相关链接",
   "text_link_autojs6": "AutoJs6 项目",
   "text_link_notices": "第三方声明",
-  "p_instruction_more": "源码, 发行历史与第三方许可证见 [项目主页]({{ repo_url }})."
+  "instruction_p_what": "Bundled Libraries 为 AutoJs6 脚本提供 {{ library_count }} 个库: axios, dayjs 等 JavaScript 库, 以及 fs, path 等 Node 兼容垫片. 启用后 `require('axios')` 与 `dayjs` 等全局对象照常可用, 已有脚本无需修改.",
+  "instruction_h3_start": "开始使用",
+  "instruction_start_steps": [
+    "确认 AutoJs6 插件中心里本插件已启用.",
+    "在脚本中用 `require` 加载库, 或直接使用全局对象 `axios`, `cheerio`, `dayjs`, `i18n` 与 `pangu`, 示例见下文.",
+    "用不到的库可以在插件页面关闭; 插件页面从插件中心或桌面上的 Bundled Libraries 图标打开."
+  ],
+  "instruction_h3_features": "主要功能",
+  "instruction_features": [
+    "**库**: axios, cheerio, dayjs, i18n, lodash 与 pangu; 除 lodash 外都可以直接作为全局对象使用.",
+    "**Node 兼容垫片**: buffer, events, fs, os, path, process 与 nodejs, 用 `require` 加载.",
+    "**逐库开关**: 插件页面为每个库提供一个开关, 默认全部开启; 关闭的库不能被 `require`, 它的全局对象也不能使用."
+  ],
+  "instruction_h3_script": "在脚本中使用",
+  "instruction_p_script": "下面的示例用 `require` 加载 lodash 与 path, 并直接使用全局对象 dayjs 与 cheerio:",
+  "instruction_p_script_unavailable": "插件不可用或库被关闭时, `require` 会抛出错误, 可以这样处理:",
+  "instruction_script_notes": [
+    "错误的 `code` 为 `MODULE_NOT_FOUND`, `library` 为库名, `reason` 为原因, 例如 `library-disabled` 表示库被关闭.",
+    "开关只影响之后的 `require`, 已经加载的模块不受影响.",
+    "`fs` 依赖 `buffer`, `nodejs` 依赖 `process` 与 `buffer`; 关闭被依赖的库后, 依赖它的模块也无法加载.",
+    "本插件服务于 AutoJs6 默认的 JavaScript 脚本; Node.js 运行时插件中的脚本使用 Node.js 自带的模块."
+  ],
+  "instruction_h3_requirements": "运行要求",
+  "instruction_requirements": [
+    "Android {{ min_android_version }} 或更高版本, AutoJs6 {{ required_host_version_name }} 或更高版本.",
+    "本插件只是资源包, 不需要任何权限; axios 的网络请求由运行脚本的 AutoJs6 发出."
+  ],
+  "instruction_h3_faq": "常见问题",
+  "instruction_faq": [
+    {
+      "q": "脚本提示需要本插件时的处理",
+      "a": "从 AutoJs6 {{ required_host_version_name }} 起, 这些库不再随 AutoJs6 安装包提供. 安装并在插件中心启用本插件, 并确认插件页面中对应库的开关已开启."
+    },
+    {
+      "q": "已有脚本的写法",
+      "a": "无需改写. `axios` 等全局对象与 `require('axios')` 等写法都照常可用, 库从本插件加载."
+    }
+  ],
+  "instruction_p_more": "各库的版本, 模块名与许可证见 [项目主页]({{ repo_url }})."
 }

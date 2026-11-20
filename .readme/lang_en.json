@@ -78,5 +78,43 @@
   "h3_links": "Related links",
   "text_link_autojs6": "AutoJs6 project",
   "text_link_notices": "Third-party notices",
-  "p_instruction_more": "Source code, release history and third-party licenses are on the [project page]({{ repo_url }})."
+  "instruction_p_what": "Bundled Libraries provides {{ library_count }} libraries for AutoJs6 scripts: JavaScript libraries such as axios, cheerio and dayjs, plus Node compatibility shims such as fs and path. Once it is enabled, `require('axios')` and the like, as well as global objects such as `dayjs`, work as usual, so existing scripts need no changes.",
+  "instruction_h3_start": "Getting started",
+  "instruction_start_steps": [
+    "Make sure this plugin is enabled in the Plugin Center of AutoJs6.",
+    "In a script, load a library with `require`, or use the global objects `axios`, `cheerio`, `dayjs`, `i18n` and `pangu` directly; see the examples below.",
+    "Libraries you do not need can be switched off on the plugin page, which opens from the Plugin Center or the Bundled Libraries icon on the home screen."
+  ],
+  "instruction_h3_features": "Main features",
+  "instruction_features": [
+    "**Libraries**: axios, cheerio, dayjs, i18n, lodash and pangu; all except lodash can also be used directly as global objects.",
+    "**Node compatibility shims**: buffer, events, fs, os, path, process and nodejs, loaded with `require`.",
+    "**Per-library switches**: the plugin page has one switch per library, all on by default; a library that is switched off cannot be loaded with `require`, and its global object cannot be used either."
+  ],
+  "instruction_h3_script": "Using it in scripts",
+  "instruction_p_script": "The example below loads lodash and path with `require` and uses the global objects dayjs and cheerio directly:",
+  "instruction_p_script_unavailable": "When the plugin is unavailable or a library is switched off, `require` throws an error, which you can handle like this:",
+  "instruction_script_notes": [
+    "The error has `code` set to `MODULE_NOT_FOUND`, the library name in `library` and the cause in `reason`, for example `library-disabled` when the library is switched off.",
+    "A switch only affects later `require` calls; modules that are already loaded are not affected.",
+    "`fs` depends on `buffer`, and `nodejs` depends on `process` and `buffer`; when a library they depend on is switched off, they cannot be loaded either.",
+    "This plugin serves the default JavaScript scripts of AutoJs6; scripts in the Node.js runtime plugin use the modules built into Node.js."
+  ],
+  "instruction_h3_requirements": "Requirements",
+  "instruction_requirements": [
+    "Android {{ min_android_version }} or later, and AutoJs6 {{ required_host_version_name }} or later.",
+    "This plugin is only a resource package and needs no permissions; network requests made with axios are sent by AutoJs6, which runs the script."
+  ],
+  "instruction_h3_faq": "FAQ",
+  "instruction_faq": [
+    {
+      "q": "A script says this plugin is required",
+      "a": "Starting with AutoJs6 {{ required_host_version_name }}, the AutoJs6 package no longer includes these libraries. Install this plugin, enable it in the Plugin Center, and check that the switch of the library is on in the plugin page."
+    },
+    {
+      "q": "Existing scripts",
+      "a": "No changes are needed. Global objects such as `axios` and calls such as `require('axios')` keep working, and the libraries are loaded from this plugin."
+    }
+  ],
+  "instruction_p_more": "The version, module names and license of each library are on the [project page]({{ repo_url }})."
 }

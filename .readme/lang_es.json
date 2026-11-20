@@ -78,5 +78,43 @@
   "h3_links": "Enlaces",
   "text_link_autojs6": "Proyecto AutoJs6",
   "text_link_notices": "Avisos de terceros",
-  "p_instruction_more": "El código fuente, el historial de versiones y las licencias de terceros están en la [página del proyecto]({{ repo_url }})."
+  "instruction_p_what": "Bundled Libraries ofrece {{ library_count }} bibliotecas para los scripts de AutoJs6: bibliotecas JavaScript como axios, cheerio y dayjs, además de capas de compatibilidad con Node como fs y path. Una vez activado, `require('axios')` y similares, así como objetos globales como `dayjs`, funcionan como siempre, por lo que los scripts existentes no necesitan cambios.",
+  "instruction_h3_start": "Primeros pasos",
+  "instruction_start_steps": [
+    "Compruebe que este plugin está activado en el Centro de plugins de AutoJs6.",
+    "En un script, cargue una biblioteca con `require` o use directamente los objetos globales `axios`, `cheerio`, `dayjs`, `i18n` y `pangu`; consulte los ejemplos más abajo.",
+    "Las bibliotecas que no necesite se pueden desactivar en la página del plugin, que se abre desde el Centro de plugins o con el icono Bundled Libraries de la pantalla de inicio."
+  ],
+  "instruction_h3_features": "Funciones principales",
+  "instruction_features": [
+    "**Bibliotecas**: axios, cheerio, dayjs, i18n, lodash y pangu; todas salvo lodash también se pueden usar directamente como objetos globales.",
+    "**Capas de compatibilidad con Node**: buffer, events, fs, os, path, process y nodejs, que se cargan con `require`.",
+    "**Interruptor por biblioteca**: la página del plugin tiene un interruptor por biblioteca, todos activados de forma predeterminada; una biblioteca desactivada no se puede cargar con `require` y su objeto global tampoco se puede usar."
+  ],
+  "instruction_h3_script": "Uso en scripts",
+  "instruction_p_script": "El ejemplo siguiente carga lodash y path con `require` y usa directamente los objetos globales dayjs y cheerio:",
+  "instruction_p_script_unavailable": "Cuando el plugin no está disponible o una biblioteca está desactivada, `require` lanza un error, que puede tratar así:",
+  "instruction_script_notes": [
+    "El error tiene `code` igual a `MODULE_NOT_FOUND`, el nombre de la biblioteca en `library` y la causa en `reason`, por ejemplo `library-disabled` cuando la biblioteca está desactivada.",
+    "Un interruptor solo afecta a los `require` posteriores; los módulos ya cargados no se ven afectados.",
+    "`fs` depende de `buffer`, y `nodejs` depende de `process` y `buffer`; si se desactiva una biblioteca de la que dependen, tampoco se pueden cargar.",
+    "Este plugin sirve a los scripts JavaScript predeterminados de AutoJs6; los scripts del plugin de entorno de ejecución Node.js usan los módulos integrados en Node.js."
+  ],
+  "instruction_h3_requirements": "Requisitos",
+  "instruction_requirements": [
+    "Android {{ min_android_version }} o posterior, y AutoJs6 {{ required_host_version_name }} o posterior.",
+    "Este plugin es solo un paquete de recursos y no necesita ningún permiso; las solicitudes de red de axios las envía AutoJs6, que ejecuta el script."
+  ],
+  "instruction_h3_faq": "Preguntas frecuentes",
+  "instruction_faq": [
+    {
+      "q": "Un script indica que necesita este plugin",
+      "a": "A partir de AutoJs6 {{ required_host_version_name }}, el paquete de AutoJs6 ya no incluye estas bibliotecas. Instale este plugin, actívelo en el Centro de plugins y compruebe que el interruptor de la biblioteca está activado en la página del plugin."
+    },
+    {
+      "q": "Scripts existentes",
+      "a": "No necesitan cambios. Los objetos globales como `axios` y las llamadas como `require('axios')` siguen funcionando, y las bibliotecas se cargan desde este plugin."
+    }
+  ],
+  "instruction_p_more": "La versión, los nombres de módulo y la licencia de cada biblioteca están en la [página del proyecto]({{ repo_url }})."
 }

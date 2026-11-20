@@ -1,45 +1,59 @@
-Bundled Libraries reúne las 13 bibliotecas de script que antes venían integradas en AutoJs6: axios, cheerio, dayjs, i18n, pangu y lodash, además de las capas de compatibilidad con Node buffer, events, fs, os, path, process y nodejs. A partir de AutoJs6 6.8.0, el paquete de AutoJs6 ya no las incluye; con este plugin instalado y activado, `require('axios')`, `require('fs')` y similares, así como los objetos globales `axios`, `cheerio`, `dayjs`, `i18n` y `pangu`, siguen funcionando exactamente igual que antes.
+Bundled Libraries ofrece 13 bibliotecas para los scripts de AutoJs6: bibliotecas JavaScript como axios, cheerio y dayjs, además de capas de compatibilidad con Node como fs y path. Una vez activado, `require('axios')` y similares, así como objetos globales como `dayjs`, funcionan como siempre, por lo que los scripts existentes no necesitan cambios.
 
-El plugin es solo un paquete de recursos: AutoJs6 lee los archivos de las bibliotecas directamente del paquete del plugin, los scripts nunca inician el proceso del plugin y el plugin no necesita permisos de almacenamiento, red ni de otro tipo (las solicitudes de red de axios las envía AutoJs6, que ejecuta el script). Las bibliotecas que no necesite se pueden desactivar una a una en la página del plugin.
+### Primeros pasos
 
-#### Bibliotecas
+1. Compruebe que este plugin está activado en el Centro de plugins de AutoJs6.
+2. En un script, cargue una biblioteca con `require` o use directamente los objetos globales `axios`, `cheerio`, `dayjs`, `i18n` y `pangu`; consulte los ejemplos más abajo.
+3. Las bibliotecas que no necesite se pueden desactivar en la página del plugin, que se abre desde el Centro de plugins o con el icono Bundled Libraries de la pantalla de inicio.
 
-| Biblioteca | Módulos | Objeto global | Versión | Licencia |
-|---|---|---|---|---|
-| axios | `axios` | `axios` | - | MIT |
-| cheerio | `cheerio` | `cheerio` | - | MIT |
-| dayjs | `dayjs` | `dayjs` | - | MIT |
-| i18n | `i18n`, `banana-i18n` | `i18n` | - | MIT |
-| pangu | `pangu` | `pangu` | 10.1.0 | MIT |
-| lodash | `lodash` | - | 4.17.15 | MIT |
+### Funciones principales
 
-#### Capas de compatibilidad con Node
+- **Bibliotecas**: axios, cheerio, dayjs, i18n, lodash y pangu; todas salvo lodash también se pueden usar directamente como objetos globales.
+- **Capas de compatibilidad con Node**: buffer, events, fs, os, path, process y nodejs, que se cargan con `require`.
+- **Interruptor por biblioteca**: la página del plugin tiene un interruptor por biblioteca, todos activados de forma predeterminada; una biblioteca desactivada no se puede cargar con `require` y su objeto global tampoco se puede usar.
 
-| Biblioteca | Módulos | Objeto global | Versión | Licencia |
-|---|---|---|---|---|
-| buffer | `buffer` | - | - | MPL-2.0 |
-| events | `events` | - | - | MPL-2.0 |
-| fs | `fs` | - | - | MPL-2.0 |
-| os | `os` | - | - | MPL-2.0 |
-| path | `path` | - | - | MPL-2.0 |
-| process | `process` | - | - | MPL-2.0 |
-| nodejs | `nodejs` | - | - | MPL-2.0 |
+### Uso en scripts
 
-### Interruptores por biblioteca
+El ejemplo siguiente carga lodash y path con `require` y usa directamente los objetos globales dayjs y cheerio:
 
-La página del plugin (que se abre desde el Centro de plugins de AutoJs6 o con el icono Bundled Libraries de la pantalla de inicio) tiene un interruptor por biblioteca, todos activados de forma predeterminada:
+```js
+var _ = require('lodash');
+var path = require('path');
 
-- Una biblioteca desactivada ya no se puede cargar con `require` y su objeto global no se puede usar; vuelva a activarla para recuperarla.
-- Un interruptor se aplica al siguiente `require`: los módulos que un script en ejecución ya cargó se mantienen hasta que termina el script.
-- `fs` necesita `buffer`, y `nodejs` necesita `process` y `buffer`: con `buffer` o `process` desactivado, los módulos que dependen de ellos tampoco se pueden cargar.
-- "Historial de versiones", al final de la página, muestra los cambios de cada versión.
+console.log(dayjs(0).valueOf());
+console.log(cheerio.load('<p>AutoJs6</p>')('p').text());
+console.log(_.map([1, 2], function (x) { return x * 2; }).join());
+console.log(path.isAbsolute('/sdcard/Scripts'));
+```
 
-### Cuando el plugin no está disponible
+Cuando el plugin no está disponible o una biblioteca está desactivada, `require` lanza un error, que puede tratar así:
 
-Cuando el plugin no está instalado, no está autorizado, está desactivado en el Centro de plugins o no es compatible, o una biblioteca está desactivada, `require` de esa biblioteca y la lectura de su objeto global lanzan un error:
+```js
+try {
+    var axios = require('axios');
+} catch (e) {
+    console.log(e.code, e.library, e.reason);
+}
+```
 
-- El error es un `Error` con `code` `MODULE_NOT_FOUND`; su mensaje indica si hay que instalar el plugin o dónde activarlo, y los scripts pueden tratarlo con `try...catch`.
-- El objeto de error también tiene `library` (el nombre de la biblioteca) y `reason` (`not-installed`, `unauthorized`, `plugin-disabled`, `library-disabled` o `incompatible`).
-- Un cambio de estado del plugin nunca interrumpe un script en ejecución, solo afecta a los `require` posteriores; los demás módulos integrados de AutoJs6 y los archivos propios del script no se ven afectados.
+- El error tiene `code` igual a `MODULE_NOT_FOUND`, el nombre de la biblioteca en `library` y la causa en `reason`, por ejemplo `library-disabled` cuando la biblioteca está desactivada.
+- Un interruptor solo afecta a los `require` posteriores; los módulos ya cargados no se ven afectados.
+- `fs` depende de `buffer`, y `nodejs` depende de `process` y `buffer`; si se desactiva una biblioteca de la que dependen, tampoco se pueden cargar.
+- Este plugin sirve a los scripts JavaScript predeterminados de AutoJs6; los scripts del plugin de entorno de ejecución Node.js usan los módulos integrados en Node.js.
 
-El código fuente, el historial de versiones y las licencias de terceros están en la [página del proyecto](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries).
+### Requisitos
+
+- Android 7.0 o posterior, y AutoJs6 6.8.0 o posterior.
+- Este plugin es solo un paquete de recursos y no necesita ningún permiso; las solicitudes de red de axios las envía AutoJs6, que ejecuta el script.
+
+### Preguntas frecuentes
+
+**Un script indica que necesita este plugin**
+
+A partir de AutoJs6 6.8.0, el paquete de AutoJs6 ya no incluye estas bibliotecas. Instale este plugin, actívelo en el Centro de plugins y compruebe que el interruptor de la biblioteca está activado en la página del plugin.
+
+**Scripts existentes**
+
+No necesitan cambios. Los objetos globales como `axios` y las llamadas como `require('axios')` siguen funcionando, y las bibliotecas se cargan desde este plugin.
+
+La versión, los nombres de módulo y la licencia de cada biblioteca están en la [página del proyecto](https://github.com/SuperMonster003/AutoJs6-Plugin-Bundled-Libraries).
