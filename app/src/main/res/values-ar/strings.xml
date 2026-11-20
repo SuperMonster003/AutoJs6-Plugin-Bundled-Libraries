@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="plugin_description">مكتبات JavaScript وطبقات توافق Node لاستخدامها مع require في سكربتات AutoJs6</string>
+    <string name="text_back">رجوع</string>
     <string name="text_group_libraries">المكتبات</string>
     <string name="text_group_node_shims">طبقات توافق Node</string>
     <string name="text_library_license">الترخيص: %1$s</string>
     <string name="text_library_modules">الوحدات: %1$s</string>
     <string name="text_library_version">الإصدار %1$s</string>
     <string name="text_release_history">سجل الإصدارات</string>
+    <string name="text_release_history_collapse_all">طيّ الكل</string>
+    <string name="text_release_history_collapsed">مطوي</string>
+    <string name="text_release_history_expand_all">توسيع الكل</string>
+    <string name="text_release_history_expanded">موسَّع</string>
     <string name="text_release_history_load_failed">تعذر تحميل سجل الإصدارات</string>
+    <string name="text_release_history_summary">عرض سجل الإصدارات المضمن في التطبيق</string>
+    <string name="text_settings_about">حول</string>
     <string name="text_settings_summary">مكتبات لاستخدامها مع require في سكربتات AutoJs6. لا يمكن تحميل مكتبة موقوفة عبر require, وتبقى الوحدات التي حملها سكربت جار حتى ينتهي السكربت.</string>
 </resources>

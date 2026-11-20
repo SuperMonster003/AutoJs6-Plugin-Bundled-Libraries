@@ -39,6 +39,11 @@ log4j = "1.2.17"
 #purpose : Compatibility of java.time.* for Android API Level < 26 (Android 8.0) [O]
 desugar = "2.1.5"
 
+# Jetpack Compose, only for the release history page (plugin-center P21.5). The BOM does not manage activity-compose.
+# zh-CN: Jetpack Compose, 只用于发行历史页 (plugin-center P21.5). BOM 不管理 activity-compose.
+activity-compose = "1.12.2"
+compose-bom = "2026.09.00"
+
 activity-ktx = "1.12.2"
 android-annotations = "4.8.0"
 android-device-names = "2.1.1"
@@ -109,6 +114,15 @@ zip4j = "2.11.5"
 [libraries]
 
 activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity-ktx" }
+compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+compose-animation = { module = "androidx.compose.animation:animation" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-runtime = { module = "androidx.compose.runtime:runtime" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 android-annotations = { module = "org.androidannotations:androidannotations", version.ref = "android-annotations" }
 android-annotations-api = { module = "org.androidannotations:androidannotations-api", version.ref = "android-annotations" }
 android-device-names = { module = "com.jaredrummler:android-device-names", version.ref = "android-device-names" }

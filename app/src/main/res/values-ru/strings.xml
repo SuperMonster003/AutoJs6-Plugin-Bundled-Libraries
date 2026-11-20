@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="plugin_description">Библиотеки JavaScript и прослойки совместимости с Node для require в скриптах AutoJs6</string>
+    <string name="text_back">Назад</string>
     <string name="text_group_libraries">Библиотеки</string>
     <string name="text_group_node_shims">Прослойки совместимости с Node</string>
     <string name="text_library_license">Лицензия: %1$s</string>
     <string name="text_library_modules">Модули: %1$s</string>
     <string name="text_library_version">Версия %1$s</string>
     <string name="text_release_history">История выпусков</string>
+    <string name="text_release_history_collapse_all">Свернуть всё</string>
+    <string name="text_release_history_collapsed">Свёрнуто</string>
+    <string name="text_release_history_expand_all">Развернуть всё</string>
+    <string name="text_release_history_expanded">Развёрнуто</string>
     <string name="text_release_history_load_failed">Не удалось загрузить историю выпусков</string>
+    <string name="text_release_history_summary">Открыть встроенную историю выпусков приложения</string>
+    <string name="text_settings_about">О приложении</string>
     <string name="text_settings_summary">Библиотеки для require в скриптах AutoJs6. Отключенную библиотеку нельзя загрузить через require; модули, уже загруженные выполняющимся скриптом, остаются до его завершения.</string>
 </resources>

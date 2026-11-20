@@ -1,6 +1,5 @@
 package io.github.supermonster003.autojs6.plugin.bundled.libraries
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
@@ -35,11 +34,8 @@ class SettingsActivity : HostAppearanceActivity() {
             content.addView(text(getString(title), 16f).apply { setPadding(0, dp(20), 0, dp(4)) })
             libraries.filter { it.group == group }.forEach { content.addView(row(it)) }
         }
-        content.addView(text(getString(R.string.text_release_history), 16f).apply {
-            setPadding(0, dp(20), 0, dp(12))
-            setBackgroundResource(TypedValue().also { theme.resolveAttribute(android.R.attr.selectableItemBackground, it, true) }.resourceId)
-            setOnClickListener { startActivity(Intent(this@SettingsActivity, ReleaseHistoryActivity::class.java)) }
-        }, MATCH_PARENT, WRAP_CONTENT)
+        content.addView(text(getString(R.string.text_settings_about), 16f).apply { setPadding(0, dp(20), 0, dp(4)) })
+        content.addView(releaseHistoryRow(), MATCH_PARENT, WRAP_CONTENT)
         val scroll = ScrollView(this).apply { addView(content, MATCH_PARENT, WRAP_CONTENT) }
         scroll.setOnApplyWindowInsetsListener { view, insets ->
             @Suppress("DEPRECATION")
@@ -65,6 +61,19 @@ class SettingsActivity : HostAppearanceActivity() {
             library.modules.takeIf { it.size > 1 }?.let { getString(R.string.text_library_modules, it.joinToString(", ")) },
         )
         addView(text(details.joinToString("; "), 13f, secondary = true))
+    }
+
+    /** "About > Release history" (AUTOJS6_PLUGIN_RELEASE_HISTORY_AGENTS.md section 2). zh-CN: "关于 > 发行历史" (规范第 2 节). */
+    private fun releaseHistoryRow(): View = LinearLayout(this).apply {
+        orientation = LinearLayout.VERTICAL
+        tag = R.string.text_release_history
+        setPadding(0, dp(8), 0, dp(8))
+        isClickable = true
+        isFocusable = true
+        setBackgroundResource(TypedValue().also { theme.resolveAttribute(android.R.attr.selectableItemBackground, it, true) }.resourceId)
+        addView(text(getString(R.string.text_release_history), 16f))
+        addView(text(getString(R.string.text_release_history_summary), 13f, secondary = true))
+        setOnClickListener { openReleaseHistory() }
     }
 
     private fun text(value: String, sp: Float, secondary: Boolean = false) = TextView(this).apply {

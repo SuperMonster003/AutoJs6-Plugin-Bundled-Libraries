@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="plugin_description">JavaScript libraries and Node compatibility shims for require in AutoJs6 scripts</string>
+    <string name="text_back">Back</string>
     <string name="text_group_libraries">Libraries</string>
     <string name="text_group_node_shims">Node compatibility shims</string>
     <string name="text_library_license">License: %1$s</string>
     <string name="text_library_modules">Modules: %1$s</string>
     <string name="text_library_version">Version %1$s</string>
     <string name="text_release_history">Release history</string>
+    <string name="text_release_history_collapse_all">Collapse all</string>
+    <string name="text_release_history_collapsed">Collapsed</string>
+    <string name="text_release_history_expand_all">Expand all</string>
+    <string name="text_release_history_expanded">Expanded</string>
     <string name="text_release_history_load_failed">Unable to load the release history</string>
+    <string name="text_release_history_summary">Read the release history included with this app</string>
+    <string name="text_settings_about">About</string>
     <string name="text_settings_summary">Libraries for require in AutoJs6 scripts. A library that is switched off cannot be required; modules already loaded by a running script stay until the script ends.</string>
 </resources>

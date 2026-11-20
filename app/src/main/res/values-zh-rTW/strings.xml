@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="plugin_description">供 AutoJs6 腳本 require 使用的 JavaScript 函式庫與 Node 相容墊片</string>
+    <string name="text_back">返回</string>
     <string name="text_group_libraries">函式庫</string>
     <string name="text_group_node_shims">Node 相容墊片</string>
     <string name="text_library_license">授權: %1$s</string>
     <string name="text_library_modules">模組: %1$s</string>
     <string name="text_library_version">版本 %1$s</string>
-    <string name="text_release_history">發行記錄</string>
-    <string name="text_release_history_load_failed">無法載入發行記錄</string>
+    <string name="text_release_history">發行歷史</string>
+    <string name="text_release_history_collapse_all">收起全部</string>
+    <string name="text_release_history_collapsed">已收起</string>
+    <string name="text_release_history_expand_all">展開全部</string>
+    <string name="text_release_history_expanded">已展開</string>
+    <string name="text_release_history_load_failed">無法載入發行歷史</string>
+    <string name="text_release_history_summary">檢視應用程式內建的發行歷史</string>
+    <string name="text_settings_about">關於</string>
     <string name="text_settings_summary">供 AutoJs6 腳本 require 使用的函式庫. 關閉的函式庫不能被 require; 執行中的腳本已載入的模組保留到腳本結束.</string>
 </resources>

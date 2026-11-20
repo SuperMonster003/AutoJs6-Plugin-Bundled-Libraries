@@ -15,20 +15,18 @@ import android.widget.Switch
 /**
  * A settings page in AutoJs6's appearance ([HostAppearance]): the language and night mode through the base context, the
  * theme colors on the action bar, the status bar and the switches. Asks the host again on every resume (back from
- * AutoJs6 after a change of its settings) and recreates the page when the answer differs and the page was not touched.
+ * AutoJs6 after a change of its settings) and recreates the page when the answer differs and the page was not touched
+ * ([HostAppearanceSession], shared with the Compose pages).
  * zh-CN: 使用 AutoJs6 外观 ([HostAppearance]) 的设置页: 语言与夜间模式经 base context 生效, 主题色用于操作栏, 状态栏与开关.
- * 每次恢复时 (例如在 AutoJs6 改设置后返回) 重新询问宿主, 应答不同且页面未被操作时重建页面.
+ * 每次恢复时 (例如在 AutoJs6 改设置后返回) 重新询问宿主, 应答不同且页面未被操作时重建页面 ([HostAppearanceSession], 与 Compose 页面共用).
  */
 abstract class HostAppearanceActivity : Activity() {
 
-    internal lateinit var appearance: HostAppearance
-        private set
-    private var generation = 0
-    private var interacted = false
+    private val session = HostAppearanceSession(this)
+    internal val appearance: HostAppearance get() = session.appearance
 
     override fun attachBaseContext(newBase: Context) {
-        appearance = HostAppearance.load(newBase)
-        super.attachBaseContext(appearance.wrap(newBase))
+        super.attachBaseContext(session.attach(newBase))
     }
 
     @Suppress("DEPRECATION")
@@ -53,21 +51,6 @@ abstract class HostAppearanceActivity : Activity() {
         }
     }
 
-    /** Shows the up arrow in the foreground color of the host's action bar. zh-CN: 以宿主操作栏的前景色显示向上箭头. */
-    protected fun showUpArrow() {
-        val bar = actionBar ?: return
-        bar.setDisplayHomeAsUpEnabled(true)
-        val background = appearance.primary ?: return
-        val attributes = theme.obtainStyledAttributes(intArrayOf(android.R.attr.homeAsUpIndicator))
-        val arrow = try {
-            attributes.getDrawable(0)
-        } finally {
-            attributes.recycle()
-        }
-        arrow?.mutate()?.setTint(AppearanceColors.foregroundOn(background))
-        bar.setHomeAsUpIndicator(arrow)
-    }
-
     /** Colors [switch] with the host's accent, made readable on the page. zh-CN: 用宿主的强调色 (调整为在页面上可读) 为 [switch] 着色. */
     protected fun tint(switch: Switch) {
         val accent = appearance.accent ?: return
@@ -81,34 +64,18 @@ abstract class HostAppearanceActivity : Activity() {
         )
     }
 
-    private fun themeColor(attribute: Int, fallback: Int): Int {
-        val attributes = theme.obtainStyledAttributes(intArrayOf(attribute))
-        return try {
-            attributes.getColor(0, fallback)
-        } finally {
-            attributes.recycle()
-        }
-    }
-
     override fun onResume() {
         super.onResume()
-        interacted = false
-        val current = ++generation
-        HostAppearance.refresh(this) { host ->
-            runOnUiThread {
-                if (current != generation || isFinishing || isDestroyed) return@runOnUiThread
-                if (!interacted && host != appearance) recreate()
-            }
-        }
+        session.onResume()
     }
 
     override fun onUserInteraction() {
-        interacted = true
+        session.onUserInteraction()
         super.onUserInteraction()
     }
 
     override fun onPause() {
-        generation++
+        session.onPause()
         super.onPause()
     }
 

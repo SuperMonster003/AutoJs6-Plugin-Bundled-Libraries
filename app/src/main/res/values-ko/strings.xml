@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="plugin_description">AutoJs6 스크립트의 require 용 JavaScript 라이브러리와 Node 호환 심</string>
+    <string name="text_back">뒤로</string>
     <string name="text_group_libraries">라이브러리</string>
     <string name="text_group_node_shims">Node 호환 심</string>
     <string name="text_library_license">라이선스: %1$s</string>
     <string name="text_library_modules">모듈: %1$s</string>
     <string name="text_library_version">버전 %1$s</string>
     <string name="text_release_history">릴리스 기록</string>
+    <string name="text_release_history_collapse_all">모두 접기</string>
+    <string name="text_release_history_collapsed">접힘</string>
+    <string name="text_release_history_expand_all">모두 펼치기</string>
+    <string name="text_release_history_expanded">펼쳐짐</string>
     <string name="text_release_history_load_failed">릴리스 기록을 불러올 수 없습니다</string>
+    <string name="text_release_history_summary">앱에 포함된 릴리스 기록을 확인합니다</string>
+    <string name="text_settings_about">정보</string>
     <string name="text_settings_summary">AutoJs6 스크립트의 require 용 라이브러리. 끈 라이브러리는 require 할 수 없으며, 실행 중인 스크립트가 이미 로드한 모듈은 스크립트가 끝날 때까지 유지됩니다.</string>
 </resources>

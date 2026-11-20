@@ -13,6 +13,7 @@ plugins {
     id("org.autojs.build.signs")
     id("org.autojs.build.jvm-convention")
     id("com.android.application")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 val globalApplicationId = "io.github.supermonster003.autojs6.plugin.bundled.libraries"
@@ -94,6 +95,7 @@ android {
         targetSdk = versions.sdkVersionTarget
         versionCode = versions.appVersionCode
         versionName = versions.appVersionName
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "VERSION_DATE", "\"${utils.getDateString("MMM d, yyyy", "GMT+08:00")}\"")
         buildConfigField("long", "REQUIRED_HOST_VERSION_CODE", "${requiredHostVersionCode}L")
@@ -148,6 +150,7 @@ android {
 
     buildFeatures {
         buildConfig = true
+        compose = true
         resValues = true
     }
 
@@ -178,6 +181,22 @@ dependencies {
     implementation(files("$rootDir/libs/common-plugin-api.aar"))
     testImplementation(libs.junit)
 
+    // Jetpack Compose, only for the release history page (AUTOJS6_PLUGIN_RELEASE_HISTORY_AGENTS.md section 9).
+    // zh-CN: Jetpack Compose, 只用于发行历史页 (规范 AUTOJS6_PLUGIN_RELEASE_HISTORY_AGENTS.md 第 9 节).
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.animation)
+    implementation(libs.compose.activity)
+    debugImplementation(libs.compose.ui.test.manifest)
+    androidTestImplementation(libs.test.ext.junit)
+    androidTestImplementation(libs.test.runner)
+    androidTestImplementation(libs.test.espresso.core)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.ui.test.junit4)
+
     // The module tests run on the Rhino build that AutoJs6 runs the modules on: a copy of the host's
     // libs/org-mozilla-rhino-2_0_0-SNAPSHOT.jar (Rhino-For-AutoJs6; no release of mozilla/rhino keeps a const in a loop
     // body per iteration yet, which path.js relies on). Copy it again when AutoJs6 updates it.
@@ -207,11 +226,17 @@ tasks {
     }
 }
 
+// Native code inventory: the plugin has no native code of its own, but Compose ui-graphics (the release history page)
+// depends on androidx.graphics:graphics-path, whose libandroidx.graphics.path.so is packaged for four ABIs.
+// zh-CN: 原生代码清单: 插件自身没有原生代码, 但 Compose ui-graphics (发行历史页) 依赖 androidx.graphics:graphics-path,
+// 其 libandroidx.graphics.path.so 按四个 ABI 打包.
+val allowedNativeLibraries = listOf("arm64-v8a", "armeabi-v7a", "x86_64", "x86").map { "lib/$it/libandroidx.graphics.path.so" }
+
 // Fail before collection when the signing identity or the APK is not what AutoJs6 expects: complete credentials, one
-// universal APK that apksigner accepts, no native library, and the catalog with every module file stored uncompressed
-// (AutoJs6 reads them from the APK as they are).
-// zh-CN: 签名身份或 APK 不符合 AutoJs6 的预期时, 在收集之前失败: 凭据完整, 只有一个通过 apksigner 校验的通用 APK, 不含原生库,
-// 清单与每个模块文件都以不压缩方式存储 (AutoJs6 直接从 APK 原样读取).
+// universal APK that apksigner accepts, exactly the Compose native libraries above stored uncompressed, and the catalog
+// with every module file stored uncompressed (AutoJs6 reads them from the APK as they are).
+// zh-CN: 签名身份或 APK 不符合 AutoJs6 的预期时, 在收集之前失败: 凭据完整, 只有一个通过 apksigner 校验的通用 APK, 原生库恰为
+// 上面的 Compose 原生库且不压缩, 清单与每个模块文件都以不压缩方式存储 (AutoJs6 直接从 APK 原样读取).
 val verifySignedReleaseArtifacts = tasks.register("verifySignedReleaseArtifacts") {
     group = "verification"
     dependsOn("assembleRelease")
@@ -239,7 +264,11 @@ val verifySignedReleaseArtifacts = tasks.register("verifySignedReleaseArtifacts"
             .map { "assets/modules/" + it.relativeTo(moduleRootDirectory).invariantSeparatorsPath }.toSet()
         ZipFile(apks.single()).use { zip ->
             val entries = zip.entries().asSequence().associateBy(ZipEntry::getName)
-            check(entries.keys.none { it.startsWith("lib/") }) { "The release APK must not contain native libraries" }
+            val natives = entries.values.filter { it.name.startsWith("lib/") }
+            check(natives.map { it.name }.sorted() == allowedNativeLibraries.sorted()) {
+                "Unexpected native library set: ${natives.map { it.name }.sorted()}"
+            }
+            check(natives.all { it.method == ZipEntry.STORED }) { "Native libraries must be stored uncompressed" }
             (moduleFiles + "assets/script-modules.json").forEach { path ->
                 val entry = entries[path] ?: throw GradleException("The release APK misses $path")
                 check(entry.method == ZipEntry.STORED) { "$path must be stored uncompressed" }
@@ -249,6 +278,6 @@ val verifySignedReleaseArtifacts = tasks.register("verifySignedReleaseArtifacts"
 }
 tasks.named("appendDigestToReleasedFiles") { dependsOn(verifySignedReleaseArtifacts) }
 
-// The plugin ships JavaScript files only.
-// zh-CN: 插件只包含 JavaScript 文件.
-nativeAlignment { expectNoNativeLibraries.set(true) }
+// The only native libraries are Compose's (allowedNativeLibraries above); the shared gate checks their 16 KB alignment.
+// zh-CN: 唯一的原生库来自 Compose (见上面的 allowedNativeLibraries); 共享门禁检查其 16 KB 对齐.
+nativeAlignment { expectNoNativeLibraries.set(false) }
