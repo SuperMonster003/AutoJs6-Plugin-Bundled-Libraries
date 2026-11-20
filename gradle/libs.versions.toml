@@ -122,7 +122,6 @@ compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-runtime = { module = "androidx.compose.runtime:runtime" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 android-annotations = { module = "org.androidannotations:androidannotations", version.ref = "android-annotations" }
 android-annotations-api = { module = "org.androidannotations:androidannotations-api", version.ref = "android-annotations" }
 android-device-names = { module = "com.jaredrummler:android-device-names", version.ref = "android-device-names" }
